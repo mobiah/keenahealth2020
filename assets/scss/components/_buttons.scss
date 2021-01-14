@@ -1,0 +1,43 @@
+.btn {
+	font-weight: $btn-font-weight;
+	text-transform: uppercase;
+
+	&::after {
+		content: '\f061';
+		font-family: $font-family-fa-free;
+		font-weight: 900;
+		margin-left: 0.5rem;
+	}
+
+	&.btn-plain::after {
+		display: none;
+	}
+}
+
+.btn-primary {
+	@include button-variant( $brand-neutral-light, $brand-neutral-light );
+	color: $link-color;
+
+	@include hover {
+		color: darken( $link-color, 7.5% );
+	}
+}
+
+.btn-link {
+	text-decoration: none;
+	padding: 0;
+
+	@include hover {
+		text-decoration: none;
+	}
+
+	&:focus,
+	&.focus {
+		text-decoration: none;
+	}
+}
+
+.btn-link-alt {
+	@extend .btn-link;
+	@extend %link-alt;
+}

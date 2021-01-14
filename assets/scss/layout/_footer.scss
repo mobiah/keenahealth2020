@@ -1,0 +1,118 @@
+%footer-title {
+	@extend .h5;
+	text-transform: uppercase;
+
+	&::after {
+		display: block;
+		content: '';
+		background-image: url(../images/logo-keena-ornament.svg);
+		background-repeat: no-repeat;
+		width: 1.5rem;
+		height: 0.75rem;
+		overflow: visible;
+		margin-top: map-get( $spacers, 2 );
+	}
+}
+
+.site-footer {
+	@extend .py-5;
+	background-color: $footer-bg;
+
+	a {
+		@extend %link-alt;
+	}
+
+	.row {
+		display: block;
+		margin: 0;
+
+		@include media-breakpoint-up(lg) {
+			display: flex;
+		}
+	}
+
+	.footer-nav .nav {
+		display: block;
+		margin-bottom: map-get( $spacers, 5 );
+
+		@include media-breakpoint-up(lg) {
+			display: flex;
+			margin-bottom: 0;
+		}
+	}
+
+	.footer-nav .nav .nav {
+		@extend .flex-column;
+		margin-right: map-get( $spacers, 7 );
+	}
+
+	.footer-nav .nav-link {
+		padding: 0;
+	}
+
+	.footer-widgets {
+
+		@include media-breakpoint-up(lg) {
+			display: flex;
+			flex: 1;
+		}
+	}
+
+	.widget-title,
+	.footer-nav > .nav > .nav-item > .nav-link {
+		@extend %footer-title;
+		pointer-events: none;
+	}
+
+	.widget-contact {
+		margin-bottom: map-get( $spacers, 5 );
+
+		@include media-breakpoint-up(lg) {
+			margin-bottom: 0;
+		}
+	}
+
+	.widget-copyright {
+		font-size: $font-size-sm;
+
+		@include media-breakpoint-up(lg) {
+			align-self: flex-end;
+			text-align: right;
+			margin-left: auto;
+		}
+
+		img {
+			width: 10.5rem;
+			margin-bottom: map-get( $spacers, 4 );
+		}
+
+		p {
+			margin: 0;
+		}
+
+		.widget-title {
+			display: none;
+		}
+	}
+
+	.social-link {
+		display: inline-block;
+		background-color: $info;
+		color: $white;
+		width: 1.75rem;
+		height: 1.75rem;
+		border-radius: 50%;
+		text-align: center;
+		vertical-align: middle;
+		transition: $transition-base;
+
+		i {
+			line-height: 1.75;
+		}
+
+		&:hover {
+			color: $white;
+			background-color: darken( $info, 7.5% );
+		}
+	} // .social-link
+} // .site-footer

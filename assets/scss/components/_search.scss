@@ -1,0 +1,103 @@
+$_post-list-pullup: -5.5rem;
+
+.search #site-main {
+	background-color: $gray-200;
+}
+
+.searchbar-container {
+	position: relative;
+	width: 100%;
+	padding: map-get( $spacers, 2 ) map-get( $spacers, 3 );
+	background-color: $white;
+	z-index: 10;
+
+	#searchbar & {
+		display: flex;
+		align-items: center;
+		padding-top: map-get( $spacers, 3 );
+		padding-bottom: map-get( $spacers, 3 );
+	}
+}
+
+.searchbar-form {
+	flex: 1 0;
+}
+
+.searchbar-input {
+	flex: 1 0;
+	border: 0;
+	border-left: 1px solid $input-border-color;
+	height: 2rem;
+	color: $primary;
+	margin: 0 map-get( $spacers, 3 );
+
+	&:focus {
+		color: $primary;
+	}
+}
+
+.searchbar-submit {
+	flex: 0;
+	font-size: 1.25rem;
+}
+
+.searchbar-close {
+	display: none;
+	margin-left: auto;
+	text-align: right;
+
+	@include media-breakpoint-up(lg) {
+		display: block;
+	}
+
+	.searchbar-close-link {
+		flex: 0;
+		font-size: 1.25rem;
+		margin-right: $navbar-nav-link-padding-x;
+	}
+}
+
+.hero.hero-search .hero-background {
+	background-color: $info;
+}
+
+.nav-item-search {
+	display: none;
+
+	@include media-breakpoint-up(lg) {
+		display: block;
+	}
+}
+
+.search-toggle {
+
+	i {
+		font-size: $font-size-base;
+	}
+}
+
+.post-list {
+
+	&.search-results {
+		position: relative;
+		top: $_post-list-pullup;
+		background-color: #fff;
+		padding: map-get( $spacers, 3 );
+
+		@include media-breakpoint-up(lg) {
+			padding: map-get( $spacers, 6 );
+		}
+	}
+}
+
+.load-more-btn {
+	position: relative;
+	top: $_post-list-pullup / 2;
+	text-align: center;
+
+	a {
+		@extend .btn;
+		@extend .btn-primary;
+		@extend .btn-plain;
+	}
+}

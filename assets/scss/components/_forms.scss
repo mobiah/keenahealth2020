@@ -1,0 +1,182 @@
+// Gravity Forms Base
+// https://roots.io/guides/style-gravity-forms-with-bootstrap-4/
+
+// General form and inputs
+// ---------------
+.gform_wrapper form {
+	margin-bottom: 0;
+}
+
+.gform_wrapper ul {
+	@extend .list-unstyled;
+}
+
+.gform_wrapper .gfield {
+	@extend .form-group;
+}
+
+.gform_wrapper .gfield_required {
+	padding-left: 1px;
+	color: $danger;
+}
+
+.gform_wrapper input[type="email"],
+.gform_wrapper input[type="date"],
+.gform_wrapper input[type="datetime"],
+.gform_wrapper input[type="datetime-local"],
+.gform_wrapper input[type="month"],
+.gform_wrapper input[type="number"],
+.gform_wrapper input[type="password"],
+.gform_wrapper input[type="search"],
+.gform_wrapper input[type="tel"],
+.gform_wrapper input[type="text"],
+.gform_wrapper input[type="time"],
+.gform_wrapper input[type="week"],
+.gform_wrapper input[type="url"],
+.gform_wrapper select,
+.gform_wrapper textarea {
+	@extend .form-control;
+}
+
+.gform_wrapper .gfield_checkbox,
+.gform_wrapper .gfield_radio {
+	@extend .form-check;
+}
+
+.gform_wrapper input[type="checkbox"],
+.gform_wrapper input[type="radio"] {
+	@extend .form-check-input;
+}
+
+.gform_wrapper .gfield_checkbox label,
+.gform_wrapper .gfield_radio label {
+	@extend .form-check-label;
+}
+
+@include media-breakpoint-up(md) {
+	.gf_list_2col .gfield_radio,
+	.gf_list_2col .gfield_checkbox,
+	.gf_list_3col .gfield_radio,
+	.gf_list_3col .gfield_checkbox,
+	.gf_list_4col .gfield_radio,
+	.gf_list_4col .gfield_checkbox,
+	.gf_list_5col .gfield_radio,
+	.gf_list_5col .gfield_checkbox {
+		column-gap: 1rem;
+	}
+
+	.gf_list_2col .gfield_radio,
+	.gf_list_2col .gfield_checkbox {
+		columns: 2;
+	}
+
+	.gf_list_3col .gfield_radio,
+	.gf_list_3col .gfield_checkbox {
+		columns: 3;
+	}
+	.gf_list_4col .gfield_radio,
+	.gf_list_4col .gfield_checkbox {
+		columns: 4;
+	}
+	.gf_list_5col .gfield_radio,
+	.gf_list_5col .gfield_checkbox {
+		columns: 5;
+	}
+}
+
+.gfield_description {
+	@extend .form-text;
+	@extend .text-muted;
+	@extend .mt-3;
+}
+
+.gform_description {
+	@extend .d-block;
+	@extend .mb-3;
+}
+
+.screen-reader-text {
+	@extend .sr-only;
+}
+
+
+// Buttons
+// ---------------
+.gform_wrapper .button {
+	@extend .btn;
+	@extend .btn-primary;
+}
+
+// Validation
+// ---------------
+.gform_wrapper .gfield_error {
+	.gfield_label {
+		@extend .alert-danger;
+	}
+
+	input,
+	select,
+	textarea {
+		@extend .alert-danger;
+	}
+}
+
+.validation_error {
+	@extend .alert;
+	@extend .alert-danger;
+}
+
+.validation_message {
+	display: none;
+}
+
+.gform_confirmation_wrapper {
+
+	.gform_confirmation_message {
+		@extend .alert;
+		@extend .alert-success;
+		@extend .text-center;
+	}
+}
+
+
+// Form Customizations
+// ---------------
+// https://getbootstrap.com/docs/4.3/components/forms/#custom-forms
+.gform_wrapper {
+
+	.gfield {
+		margin-bottom: map-get( $spacers, 5 );
+	}
+
+	.name_first,
+	.name_last {
+		font-size: $font-size-sm;
+	}
+
+	.gfield_checkbox,
+	.gfield_radio {
+		@extend .custom-control;
+		@extend .custom-checkbox;
+	}
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		@extend .custom-control-input;
+	}
+
+	.gfield_checkbox label,
+	.gfield_radio label {
+		@extend .custom-control-label;
+		vertical-align: middle;
+	}
+
+	.gfield_checkbox li {
+		margin-bottom: map-get( $spacers, 3 );
+	}
+
+	.gfield_label {
+		font-weight: $font-weight-bold;
+	}
+} // .gform_wrapper
+

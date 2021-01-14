@@ -1,0 +1,8 @@
+// Genterate background classes for grays
+@each $color, $value in $grays {
+	@include bg-variant(".bg-#{$color}", $value);
+}
+
+.bg-black {
+	background-color: $black !important;
+}

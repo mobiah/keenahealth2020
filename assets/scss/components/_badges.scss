@@ -1,0 +1,9 @@
+.badge {
+	text-transform: uppercase;
+}
+
+.badge-info,
+a.badge-info:hover,
+a.badge-info:focus {
+	color: $white;
+}

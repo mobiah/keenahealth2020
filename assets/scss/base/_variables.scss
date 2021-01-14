@@ -1,0 +1,164 @@
+// Colors
+// -------------
+
+// Brand Colors
+
+$brand-blue          : #36414F;
+$brand-yellow        : #F5E845;
+$brand-green         : #89AC9F;
+$brand-red           : #E43A20;
+$brand-neutral-light : #E6E6E6;
+$brand-neutral-dark  : #5D5954;
+
+// Grays
+$white:    #FFF;
+$gray-100: #FAFAFA;
+$gray-200: #F6F6F6;
+$gray-300: #EEE;
+$gray-400: #DDD;
+$gray-500: #CCC;
+$gray-600: #999;
+$gray-700: #666;
+$gray-800: #444;
+$gray-900: #2E2E2E;
+$black:    #1A1A1A;
+
+// Theme Colors
+$primary   : $brand-blue;
+$secondary : $brand-red;
+$warning   : $brand-yellow;
+$info      : $brand-green;
+$light     : $brand-neutral-light;
+$dark      : $brand-neutral-dark;
+
+// Text Colors
+$body-color     : $primary;
+$headings-color : $body-color;
+$link-color     : $secondary ;
+
+// Typography
+// -------------
+$font-family-sans-serif : 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$headings-font-family   : $font-family-sans-serif;
+$font-family-fa-brands  : 'Font Awesome 5 Brands';
+$font-family-fa-free    : 'Font Awesome 5 Free';
+
+$font-size-base : 1rem;
+$font-size-lg   : $font-size-base * 1.25;
+$font-size-sm   : $font-size-base * .875;
+$font-size-xs   : $font-size-base * .75;
+
+$line-height-base: 1.8;
+
+$font-weight-bolder: 800;
+
+$h1-font-size: 2rem; // 32px
+$h2-font-size: 1.5rem; // 24px
+$h3-font-size: 1.25rem; // 20px
+$h4-font-size: 1.125rem; // 18px
+$h5-font-size: $font-size-base; // 16px
+$h6-font-size: $font-size-sm; // 14px
+
+$headings-font-weight: 600;
+$headings-line-height: 1.5;
+
+$display2-weight: $headings-font-weight;
+
+
+// Borders
+// -------------
+$border-radius: 0;
+$border-radius-lg: $border-radius;
+$border-radius-sm: $border-radius;
+$border-width: 1px;
+$border-color: $gray-500;
+$border-base: $border-width solid $border-color;
+
+
+// Navbar
+// -------------
+$navbar-dark-color           : rgba($white, .75);
+$navbar-dark-hover-color     : rgba($white, 1);
+$navbar-dark-toggler-icon-bg : str-replace(url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$white}' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"), "#", "%23");
+
+
+// Dropdowns
+// -------------
+$dropdown-bg               : rgba( $gray-200, 0.8 );
+$dropdown-bg-mobile        : rgba( $gray-200, 0.98 );
+$dropdown-link-color       : $gray-700;
+$dropdown-link-hover-color : $link-color;
+$dropdown-link-hover-bg    : transparent;
+$dropdown-font-size        : $font-size-sm;
+$dropdown-padding-y        : 1rem;
+
+
+// Buttons
+// -------------
+$input-btn-font-size: $font-size-sm;
+$input-btn-font-size-sm: $font-size-xs;
+$input-btn-font-size-lg: $font-size-lg;
+$btn-font-weight: 600;
+
+
+// Forms
+// -------------
+$component-active-bg: $secondary;
+$custom-control-indicator-size: 1.25rem;
+
+
+// Header
+// -------------
+$header-height      : 5rem;
+$header-height-sm   : $header-height * 0.75;
+$header-spacing-top : 2rem;
+
+
+// Footer
+// -------------
+$footer-bg: transparent;
+
+
+// Grid & Spacers
+// -------------
+
+// Spacing
+// Adding more spacing options (6 - 11) to Bootstrap defaults (0 - 5).
+$spacer: 1rem;
+$spacers: ();
+$spacers: map-merge($spacers, (
+	6 : ($spacer * 4.0),
+	7 : ($spacer * 5.0),
+	8 : ($spacer * 7.5),
+	9 : ($spacer * 10.0),
+	10 : ($spacer * 12.5),
+	11 : ($spacer * 15.0),
+));
+
+// Grid Breakpoints
+// Adding xxl breakpoint
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1440px
+);
+
+// Grid Containers
+// Adding xxl container
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px,
+	xxl: 1380px
+);
+
+// Badges
+$badge-font-size:                   80%;
+$badge-font-weight:                 $headings-font-weight;
+$badge-padding-y:                   .375em;
+$badge-padding-x:                   .5em;
+

@@ -1,0 +1,19 @@
+%link-alt {
+	color: $primary;
+
+	&:hover {
+		color: $link-color;
+	}
+}
+
+.h1 {
+	font-weight: 300;
+}
+
+.font-size-sm {
+	font-size: $font-size-sm;
+}
+
+.font-size-lg {
+	font-size: $font-size-lg;
+}

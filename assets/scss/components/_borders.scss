@@ -1,0 +1,50 @@
+.small-divider { // Should be applied to <hr> element
+	display: inline-block;
+	border-top: 3px solid $info;
+	width: 3rem;
+
+	&.text-white {
+		border-top-color: $white;
+	}
+
+	&.text-primary {
+		border-top-color: $primary;
+	}
+
+	&.text-secondary {
+		border-top-color: $secondary;
+	}
+
+	&.text-warning {
+		border-top-color: $warning;
+	}
+}
+
+.small-divider-xs {
+	@extend .small-divider;
+	width: 1.5rem;
+}
+
+.text-white .small-divider,
+.small-divider.text-white {
+	border-top-color: $white;
+}
+
+.small-divider
+
+.block-ornament {
+	text-align: center;
+	line-height: 0;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
+	&::after {
+		display: inline-block;
+		position: relative;
+		content: '\25BC';
+		transform: scale( 10, 5 );
+		bottom: -0.75rem;
+		z-index: 10;
+	}
+}

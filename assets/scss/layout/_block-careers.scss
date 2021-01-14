@@ -1,0 +1,51 @@
+.careers {
+
+	.column-full-time {
+
+		@include media-breakpoint-up(xl) {
+			flex-grow: 2;
+		}
+
+	}
+
+	.column-internship {
+		min-width: 33%;
+	}
+
+	.career-type-title {
+		@extend .h5;
+		@extend .text-uppercase;
+		margin-bottom: map-get( $spacers, 3 );
+
+		@include media-breakpoint-up(md) {
+			margin-bottom: map-get( $spacers, 5 );
+		}
+	}
+
+	.career {
+		@extend .mb-5;
+
+		.job-title {
+			@extend .h1;
+			font-size: 1.875rem;
+
+			a {
+				@extend %link-alt;
+				text-decoration: none;
+			}
+		}
+
+		.job-location {
+			@extend .mb-2;
+		}
+
+		.job-link {
+			@extend .d-inline-block;
+			@extend .pt-2;
+			@extend .border-top;
+			@extend .font-weight-bold;
+			@extend .text-uppercase;
+			@extend .font-size-sm;
+		}
+	}
+}

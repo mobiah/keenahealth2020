@@ -1,0 +1,28 @@
+blockquote {
+	$_blockquote-bg: $gray-200;
+
+	position: relative;
+	background-color: $_blockquote-bg;
+	padding: map-get( $spacers, 5 );
+	font-weight: $font-weight-light;
+	font-size: $h3-font-size;
+	text-align: center;
+	margin-top: map-get( $spacers, 4 );
+	margin-bottom: map-get( $spacers, 6 );
+
+	footer {
+		@extend .h6;
+		text-transform: uppercase;
+		margin-bottom: 0;
+	}
+
+	&::before {
+		position: absolute;
+		content: '\25B2';
+		transform: scale( 6, 3 );
+		top: -1rem;
+		left: 50%;
+		line-height: 0;
+		color: $_blockquote-bg;
+	}
+}

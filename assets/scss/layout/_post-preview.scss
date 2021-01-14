@@ -1,0 +1,25 @@
+.post-preview-search {
+	border-bottom: $border-base;
+	padding-top: map-get( $spacers, 4 );
+	padding-bottom: map-get( $spacers, 3 );
+
+	&:last-child {
+		border-bottom: 0;
+		padding-bottom: 0;
+	}
+
+	.post-parent {
+		font-weight: 800;
+		text-transform: uppercase;
+		margin-bottom: 0;
+	}
+
+	.post-title {
+		font-weight: 300;
+		margin-bottom: map-get( $spacers, 3 );
+
+		a {
+			@extend %link-alt;
+		}
+	}
+}

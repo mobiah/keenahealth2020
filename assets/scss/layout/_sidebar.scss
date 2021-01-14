@@ -1,0 +1,25 @@
+.sidebar {
+
+	.widget {
+		@extend .mb-4;
+	}
+
+	.widget_text:not( .widget_custom_html ) {
+		@extend .p-4;
+		@extend .bg-200;
+	}
+
+	.widget-title {
+		@extend .h6;
+		@extend .text-uppercase;
+		@extend .text-secondary;
+	}
+
+	.widget-title-hidden .widget-title {
+		@extend .sr-only;
+	}
+
+	.textwidget p:last-child {
+		margin-bottom: 0;
+	}
+}

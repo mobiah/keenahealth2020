@@ -1,0 +1,45 @@
+.testimonial {
+
+	.testimonial-item {
+		text-align: center;
+	}
+
+	.testimonial-image {
+		margin-bottom: map-get( $spacers, 4 );
+
+		img {
+			width: 9.375rem; // 150px
+		}
+	}
+
+	.testimonial-quote {
+		@extend .h3;
+		font-weight: 500;
+	}
+
+	.small-divider {
+		width: 2rem;
+		margin: map-get( $spacers, 4 ) 0;
+	}
+
+	.testimonial-citation {
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-size: $font-size-sm;
+
+		span {
+			display: block;
+		}
+
+		.name {
+			font-weight: 800;
+		}
+	}
+}
+
+.testimonial.text-white {
+	.testimonial-quote,
+	.testimonial-citation {
+		color: $white;
+	}
+}

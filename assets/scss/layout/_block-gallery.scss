@@ -1,0 +1,73 @@
+.gallery {
+	@extend .image-gallery;
+
+	.gallery-item {
+		margin-bottom: map-get( $spacers, 5 );
+
+		@include media-breakpoint-up(lg) {
+			margin-bottom: 0;
+		}
+
+		&:last-child {
+			border: 0 !important;
+		}
+	}
+}
+
+.image-gallery {
+
+	img,
+	img.aligncenter,
+	img.alignright,
+	img.alignleft {
+		width: 100%;
+	}
+}
+
+.icon-gallery {
+
+	.gallery-text > p:first-of-type,
+	.gallery-text > p:first-of-type > a {
+		display: flex;
+		align-items: center;
+		height: 5rem;
+		width: 100%;
+	}
+
+	img {
+		margin-bottom: 0;
+		max-height: 100%;
+	}
+
+	img:not( .img-type-svg ) {
+		width: auto;
+	}
+
+	.img-landscape {
+		max-height: 75%;
+	}
+}
+
+// can we fix this without a hardcoded change?
+.home #gallery-1 {
+
+	.gallery-items {
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.gallery-item-1,
+	.gallery-item-3 {
+		padding-left: map-get( $spacers, 5 );
+		padding-right: map-get( $spacers, 5 );
+	}
+
+	.gallery-item-2 {
+		flex: 2;
+		order: 3;
+
+		@include media-breakpoint-up(md) {
+			order: 0;
+		}
+	}
+}

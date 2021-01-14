@@ -1,0 +1,43 @@
+.leaders {
+
+	.small-divider {
+		margin: 0.5rem 0;
+	}
+
+	.leader-contact {
+		font-size: $font-size-sm;
+
+		a {
+			@extend %link-alt;
+		}
+
+		i {
+			font-size: $font-size-base;
+		}
+	}
+
+	.leader-bio {
+		margin-left: auto;
+	}
+
+	.leader-quote {
+		order: 3;
+	}
+
+	.featured-leader:nth-of-type( even ) {
+
+		.leader-details {
+			margin-left: auto;
+			order: 2;
+		}
+
+		.leader-bio {
+			order: 1;
+			margin-left: 0;
+		}
+	}
+
+	.non-featured-leader {
+		font-size: $font-size-sm;
+	}
+}

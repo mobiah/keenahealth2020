@@ -1,0 +1,81 @@
+.author-group {
+	display: flex;
+	align-items: center;
+	margin-bottom: map-get( $spacers, 4 );
+	font-size: $font-size-sm;
+}
+
+.author-image {
+	width: 5.25rem;
+	margin-right: map-get( $spacers,  3 );
+	flex-shrink: 0;
+
+	img {
+		@extend .rounded-circle;
+	}
+}
+
+.author-name,
+.author-position {
+	display: block;
+}
+
+.author-name {
+	text-transform: uppercase;
+	font-weight: $headings-font-weight;
+}
+
+.single-post {
+
+	.author-group {
+		@extend .p-4;
+		display: block;
+		background-color: $gray-200;
+
+		@include media-breakpoint-up(md) {
+			display: flex;
+		}
+	}
+
+	.author-image {
+		margin-bottom: map-get( $spacers,  3 );
+	}
+}
+
+.post-feed {
+
+	.featured-post {
+
+		background-color: $gray-200;
+		padding: map-get( $spacers, 4 );
+		display: flex;
+		flex-direction: column;
+		margin-bottom: $grid-gutter-width;
+
+		@include media-breakpoint-up(lg) {
+			margin-bottom: 0;
+			height: 100%;
+		}
+	}
+
+	.badge {
+		margin-bottom: map-get( $spacers, 4 );
+		align-self: flex-start;
+	}
+
+	.post-title {
+		font-size: $h5-font-size;
+		text-transform: uppercase;
+
+		a {
+			@extend %link-alt;
+		}
+	}
+
+	.read-more {
+		@extend .border-top;
+		@extend .pt-3;
+		margin: 0;
+		margin-top: auto;
+	}
+}

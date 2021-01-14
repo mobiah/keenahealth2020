@@ -1,0 +1,35 @@
+// The colors baked into the logo SVG file are the primary logos, so no need for a special class here.
+
+.logo-secondary {
+
+	.logo-svg {
+
+		path:not( .logo-accent-path ),
+		polygon {
+			fill: $dark !important;
+		}
+	}
+}
+
+.logo-light {
+
+	.logo-svg {
+
+		path:not( .logo-accent-path ),
+		polygon {
+			fill: $white !important;
+		}
+	}
+}
+
+.logo-white {
+
+	.logo-svg {
+
+		path,
+		polygon {
+			fill: $white !important;
+		}
+	}
+}
+
