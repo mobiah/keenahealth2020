@@ -1,5 +1,5 @@
 </main>
-
+<hr style="border-top:1px solid #95b8ac;margin-top:0;">
 <footer class="site-footer">
 	<!-- <div class="footer-widgets"> -->
 		<div class="container">
@@ -21,6 +21,8 @@
 </footer>
 
 <?php wp_footer(); ?>
+
+
 <!-- 01101101 -->
 </body>
 </html>
