@@ -22,7 +22,9 @@
 
 <?php wp_footer(); ?>
 
-
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25153478.js"></script>
+<!-- End of HubSpot Embed Code -->
 <!-- 01101101 -->
 </body>
 </html>
