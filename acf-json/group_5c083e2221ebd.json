@@ -593,7 +593,7 @@
                 },
                 "collapsed": "",
                 "min": 1,
-                "max": 23,
+                "max": 25,
                 "layout": "table",
                 "button_label": "Add Item",
                 "sub_fields": [{
