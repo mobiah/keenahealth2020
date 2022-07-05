@@ -1,8 +1,7 @@
 {
     "key": "group_5e431657e202d",
     "title": "Career Details",
-    "fields": [
-        {
+    "fields": [{
             "key": "field_5e431667bbaba",
             "label": "Type",
             "name": "type",
@@ -16,8 +15,8 @@
                 "id": ""
             },
             "choices": {
-                "full-time": "Full Time",
-                "internship": "Internship"
+                "full-time-employment-opportunities": "Full Time Employment Opportunities",
+                "contractor-opportunities": "Contractor Opportunities"
             },
             "default_value": [],
             "allow_null": 0,
@@ -105,13 +104,11 @@
         }
     ],
     "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "career"
-            }
-        ]
+        [{
+            "param": "post_type",
+            "operator": "==",
+            "value": "career"
+        }]
     ],
     "menu_order": 0,
     "position": "normal",
