@@ -1,0 +1,111 @@
+@media (max-width:767px) {
+    .display-4 {
+        font-size: 1.6rem;
+    }
+}
+
+.mark,
+mark {
+    background: yellow;
+}
+
+.th-row {
+    background-color: #44546a;
+}
+
+.th-row th {
+    color: #fff;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+td {
+    padding: 10px
+}
+
+th,
+td {
+    border: 1px solid black;
+}
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.end-row td:first-child {
+    border: 0;
+}
+
+ol {
+    counter-reset: section;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ol li {
+    padding: 10px 0;
+}
+
+ol li::before {
+    counter-increment: section;
+    content: counters(section, ".") " ";
+    font-size: 1.2rem;
+    padding-right: 10px;
+}
+
+li.starter::before {
+    content: counters(section, ".") ".";
+}
+
+ol.second-ol {
+    padding-left: 30px;
+}
+
+td.inline-list {
+    vertical-align: top;
+}
+
+input[type="text"] {
+    border: 0;
+    border-bottom: 1px solid;
+    height: 30px;
+    background-color: yellow;
+}
+
+.fancy-border div {
+    height: 65px;
+}
+
+.red {
+    border-left: 15px solid #e43a20;
+}
+
+.teal {
+    border-left: 15px solid #95b8ac;
+}
+
+.yellow {
+    border-left: 15px solid yellow;
+}
+
+.blue {
+    border-left: 15px solid #36414f;
+}
+
+.fancy-border {
+    position: absolute;
+    left: -5%;
+}
+
+@media (min-width:768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width:1279px) and (min-width:768px) {
+    main .binarym-block .container {
+        max-width: 100%!important;
+    }
+}

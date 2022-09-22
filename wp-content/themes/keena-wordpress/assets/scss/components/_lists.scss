@@ -1,0 +1,72 @@
+%list-grid {
+    @extend .list-unstyled;
+    li:not(: first-child) {
+        border-top: $border-base;
+        padding-top: 1rem;
+        margin-top: 1rem;
+    }
+    @include media-breakpoint-up(md) {
+        display: grid;
+        grid-column-gap: $grid-gutter-width;
+        grid-template-columns: repeat( 2, 1fr);
+        li:nth-child( -n+2) {
+            border-top: 0;
+            padding-top: 0;
+            margin-top: 0;
+        }
+    }
+}
+
+@mixin list-grid( $columns) {
+    @extend %list-grid;
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: repeat( $columns, 1fr);
+        li:nth-child( -n+#{$columns}) {
+            border-top: 0;
+            padding-top: 0;
+            margin-top: 0;
+        }
+    }
+}
+
+.list-grid-2-col {
+    @include list-grid( 2);
+}
+
+.list-grid-3-col {
+    @include list-grid( 3);
+}
+
+.list-grid-4-col {
+    @include list-grid( 4);
+}
+
+.list-2-columns {
+    @include media-breakpoint-up(md) {
+        columns: 2;
+    }
+}
+
+.list-3-columns {
+    @include media-breakpoint-up(md) {
+        columns: 3;
+    }
+}
+
+.list-4-columns {
+    @include media-breakpoint-up(md) {
+        columns: 4;
+    }
+}
+
+.list-5-columns {
+    @include media-breakpoint-up(md) {
+        columns: 5;
+    }
+}
+
+.list-6-columns {
+    @include media-breakpoint-up(md) {
+        columns: 6;
+    }
+}
