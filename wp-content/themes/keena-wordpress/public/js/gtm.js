@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('.page-id-279 #gallery-5 .gallery-text p:empty').remove();
+    $('.page-id-2188 #gallery-6 p:empty').remove();
     $('.page-id-279 .cs-locale').css('display', 'none');
     jQuery('a.dl-push').click(function (e) {
         dataLayer.push({
@@ -21,6 +22,58 @@ $(document).ready(function () {
         });
     }
 
+    if (window.location.href.indexOf("/ehr-migration-journal-splash/") > -1) {
+        var galleryParent = $('.gallery-items');
+        galleryParent.each(function () {
+            var tallestHeight = 0;
+            var sameHeightChildren = $(this).find(".fps");
+
+            sameHeightChildren.each(function () {
+                var thisHeight = $(this).height();
+
+                if (thisHeight > tallestHeight) {
+                    tallestHeight = thisHeight;
+                }
+            });
+            sameHeightChildren.height(tallestHeight + 30);
+        });
+    }
+
+    if ($('.insights-blocks')) {
+        var galleryParent = $('.insights-blocks').parent();
+        galleryParent.each(function () {
+            var tallestHeight = 0;
+            var sameHeightChildren = $(this).find(".insights-blocks");
+
+            sameHeightChildren.each(function () {
+                var thisHeight = $(this).height();
+
+                if (thisHeight > tallestHeight) {
+                    tallestHeight = thisHeight;
+                }
+            });
+            sameHeightChildren.height(tallestHeight);
+        });
+    }
+
+    if ($('.solutions-same-height')) {
+        // set gallery items to equal height
+        var galleryParent = $('.page-id-2188 #gallery-4')
+        galleryParent.each(function () {
+            var tallestHeight = 0;
+            var sameHeightChildren = $(this).find(".solutions-same-height");
+
+            sameHeightChildren.each(function () {
+                var thisHeight = $(this).height();
+
+                if (thisHeight > tallestHeight) {
+                    tallestHeight = thisHeight;
+                }
+            });
+            sameHeightChildren.height(tallestHeight + 10);
+        });
+
+    }
     if (window.location.href.indexOf("/keena-insights/") > -1) {
 
         // set gallery items to equal height
@@ -40,37 +93,17 @@ $(document).ready(function () {
         });
 
         function mobileResetPublications() {
-            jQuery('.gallery-item-4').hide();
-            jQuery('.gallery-item-5').hide();
-            jQuery('.gallery-item-6').hide();
-            jQuery('.gallery-item-7').hide();
-            jQuery('.gallery-item-8').hide();
-            jQuery('.gallery-item-9').hide();
+            // only show 3 on mobile on page load. this will be combined with resetPublications
+            for (var i = 4; i < 10; i++) {
+                jQuery(`.gallery-item-${i}`).hide();
+            }
         }
 
         function resetPublications() {
-            jQuery('.gallery-item-10').hide();
-            jQuery('.gallery-item-11').hide();
-            jQuery('.gallery-item-12').hide();
-            jQuery('.gallery-item-13').hide();
-            jQuery('.gallery-item-14').hide();
-            jQuery('.gallery-item-15').hide();
-            jQuery('.gallery-item-16').hide();
-            jQuery('.gallery-item-17').hide();
-            jQuery('.gallery-item-18').hide();
-            jQuery('.gallery-item-19').hide();
-            jQuery('.gallery-item-20').hide();
-            jQuery('.gallery-item-21').hide();
-            jQuery('.gallery-item-22').hide();
-            jQuery('.gallery-item-23').hide();
-            jQuery('.gallery-item-24').hide();
-            jQuery('.gallery-item-25').hide();
-            jQuery('.gallery-item-26').hide();
-            jQuery('.gallery-item-27').hide();
-            jQuery('.gallery-item-28').hide();
-            jQuery('.gallery-item-29').hide();
-            jQuery('.gallery-item-30').hide();
-            jQuery('.gallery-item-31').hide();
+            // hide all of the publications after displaying 9
+            for (var i = 10; i < 32; i++) {
+                jQuery(`.gallery-item-${i}`).hide();
+            }
         }
 
         jQuery(window).on('load', function () {
@@ -109,31 +142,32 @@ $(document).ready(function () {
                     case "System & Business Automation":
                         jQuery('.gallery-item').hide();
                         jQuery('.gallery-item-11').show();
-                        jQuery('.gallery-item-16').show();
+                        jQuery('.gallery-item-17').show();
                         break;
                     case "Data Analytics & Management":
                         jQuery('.gallery-item').hide();
                         jQuery('.gallery-item-5').show();
                         jQuery('.gallery-item-6').show();
-                        jQuery('.gallery-item-18').show();
+                        jQuery('.gallery-item-19').show();
                         break;
                     case "Conversion & Archival":
                         jQuery('.gallery-item').hide();
                         jQuery('.gallery-item-2').show();
-                        jQuery('.gallery-item-14').show();
-                        jQuery('.gallery-item-15').show();
-                        jQuery('.gallery-item-23').show();
                         jQuery('.gallery-item-7').show();
                         jQuery('.gallery-item-10').show();
+                        jQuery('.gallery-item-15').show();
+                        jQuery('.gallery-item-16').show();
                         jQuery('.gallery-item-24').show();
+                        jQuery('.gallery-item-25').show();
                         break;
                     case "Advisory Services":
                         jQuery('.gallery-item').hide();
                         jQuery('.gallery-item-4').show();
+                        jQuery('.gallery-item-14').show();
                         break;
                     case "Patient Engagement":
                         jQuery('.gallery-item').hide();
-                        jQuery('.gallery-item-17').show();
+                        jQuery('.gallery-item-18').show();
                         break;
                     case "Workflow Efficiency":
                         jQuery('.gallery-item').hide();
@@ -141,24 +175,24 @@ $(document).ready(function () {
                         jQuery('.gallery-item-5').show();
                         jQuery('.gallery-item-12').show();
                         jQuery('.gallery-item-13').show();
-                        jQuery('.gallery-item-21').show();
-                        jQuery('.gallery-item-23').show();
-                        jQuery('.gallery-item-25').show();
-                        jQuery('.gallery-item-27').show();
+                        jQuery('.gallery-item-22').show();
+                        jQuery('.gallery-item-24').show();
+                        jQuery('.gallery-item-26').show();
                         jQuery('.gallery-item-28').show();
                         jQuery('.gallery-item-29').show();
+                        jQuery('.gallery-item-30').show();
                         break;
                     case "Interfaces & Interoperability":
                         jQuery('.gallery-item').hide();
                         jQuery('.gallery-item-1').show();
                         jQuery('.gallery-item-2').show();
-                        jQuery('.gallery-item-19').show();
-                        jQuery('.gallery-item-26').show();
+                        jQuery('.gallery-item-20').show();
+                        jQuery('.gallery-item-27').show();
                         break;
                     case "Population Health":
                         jQuery('.gallery-item').hide();
                         jQuery('.gallery-item-9').show();
-                        jQuery('.gallery-item-22').show();
+                        jQuery('.gallery-item-23').show();
                         break;
                 }
             });

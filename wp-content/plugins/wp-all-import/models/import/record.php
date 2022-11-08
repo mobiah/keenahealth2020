@@ -3545,7 +3545,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
         return wp_all_import_clear_xss($title);
     }
 
-    public function downloadFile($url, $image_filepath, $is_cron = false, $logger, $type = 'images'){
+    public function downloadFile($url, $image_filepath, $is_cron, $logger, $type = 'images'){
 
         $downloaded = false;
 

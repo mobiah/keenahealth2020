@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html <?php language_attributes(); ?>>
+
 <head>
 
     <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -45,7 +46,7 @@
     <meta name="msapplication-square310x310logo"
         content="<?php echo get_template_directory_uri(); ?>/public/images/icons/mstile-310x310.png" />
     <meta name="theme-color" content="#36414f">
-	
+
 
     <?php
 		wp_head();
@@ -92,9 +93,9 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="menu-text">Menu</span> <span class="navbar-toggler-icon"></span>
                 </button>
-				
+
                 <div id="navbarNav" class="collapse navbar-collapse">
-			
+
                     <?php 
 				binarym_display_nav_menu( $theme_location = 'primary-nav', $navbar_nav = true, $dropdowns = true ); 
 					
@@ -111,7 +112,7 @@
 
                 </div>
             </div><!-- .container -->
-        </nav> 
+        </nav>
     </header>
 
     <main class="content" id="site-main">

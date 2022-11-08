@@ -37,7 +37,6 @@ currencySymbol	= R$
 
 ##
 ##	Excel Error Codes	(For future use)
-
 ##
 NULL	= #NULO!
 DIV0	= #DIV/0!

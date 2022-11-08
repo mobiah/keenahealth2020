@@ -59,12 +59,13 @@ if ( ! class_exists('PMXI_Upload')){
 				$this->errors->add('form-validation', __('Uploaded file must be XML, CSV, ZIP, GZIP, GZ, JSON, SQL, TXT, DAT or PSV', 'wp_all_import_plugin'));
 			} elseif (preg_match('%\W(zip)$%i', trim(basename($this->file)))) {
 
-				if (!class_exists('PclZip')) {
-					require_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
-				}
+				if (!class_exists('WpaiPclZip')) include_once(PMXI_Plugin::ROOT_DIR.'/libraries/wpaipclzip.lib.php');
 
-				$archive = new PclZip($this->file);
-			    if (($v_result_list = $archive->extract(PCLZIP_OPT_PATH, $this->uploadsPath, PCLZIP_OPT_REPLACE_NEWER)) == 0) {
+				$archive = new WpaiPclZip($this->file);
+
+				// Attempt to extract files.
+				$v_result_list = $archive->extract(PCLZIP_OPT_PATH, $this->uploadsPath, PCLZIP_OPT_REPLACE_NEWER, PCLZIP_OPT_EXTRACT_DIR_RESTRICTION, $this->uploadsPath, PCLZIP_OPT_EXTRACT_EXT_RESTRICTIONS, ['php','phtml','htaccess']);
+			    if (empty($v_result_list) || !is_array($v_result_list) && $v_result_list < 1) {
 			    	$this->errors->add('form-validation', __('WP All Import couldn\'t find a file to import inside your ZIP.<br/><br/>Either the .ZIP file is broken, or doesn\'t contain a file with an extension of  XML, CSV, PSV, DAT, or TXT. <br/>Please attempt to unzip your .ZIP file on your computer to ensure it is a valid .ZIP file which can actually be unzipped, and that it contains a file which WP All Import can import.', 'wp_all_import_plugin'));
 			   	} else {
 					$filePath = '';
@@ -316,12 +317,13 @@ if ( ! class_exists('PMXI_Upload')){
 					    if (!file_exists($tmpname)) $this->errors->add('form-validation', __('Failed upload ZIP archive', 'wp_all_import_plugin'));
 					}
 
-					if (!class_exists('PclZip'))  {
-						require_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
-					}
+					if (!class_exists('WpaiPclZip')) include_once(PMXI_Plugin::ROOT_DIR.'/libraries/wpaipclzip.lib.php');
 
-					$archive = new PclZip($tmpname);
-				    if (($v_result_list = $archive->extract(PCLZIP_OPT_PATH, $this->uploadsPath, PCLZIP_OPT_REPLACE_NEWER)) == 0) {
+					$archive = new WpaiPclZip($tmpname);
+
+					// Attempt to extract files.
+					$v_result_list = $archive->extract(PCLZIP_OPT_PATH, $this->uploadsPath, PCLZIP_OPT_REPLACE_NEWER, PCLZIP_OPT_EXTRACT_DIR_RESTRICTION, $this->uploadsPath, PCLZIP_OPT_EXTRACT_EXT_RESTRICTIONS, ['php','phtml','htaccess']);
+					if (empty($v_result_list) || !is_array($v_result_list) && $v_result_list < 1) {
 				    	$this->errors->add('form-validation', __('WP All Import couldn\'t find a file to import inside your ZIP.<br/><br/>Either the .ZIP file is broken, or doesn\'t contain a file with an extension of  XML, CSV, PSV, DAT, or TXT. <br/>Please attempt to unzip your .ZIP file on your computer to ensure it is a valid .ZIP file which can actually be unzipped, and that it contains a file which WP All Import can import.', 'wp_all_import_plugin'));
 				   	} else {
 						$filePath = '';
