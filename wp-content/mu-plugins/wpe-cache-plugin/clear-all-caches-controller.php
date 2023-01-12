@@ -46,9 +46,7 @@ class ClearAllCachesController {
 	public function clear_all_caches() {
 		try {
 			$this->wpe_common_adapter->purge_memcached();
-			if ( $this->is_max_cdn_enabled() ) {
-				$this->wpe_common_adapter->clear_maxcdn_cache();
-			}
+			$this->wpe_common_adapter->clear_maxcdn_cache();
 			$this->wpe_common_adapter->purge_varnish_cache();
 
 			$this->log_info( 'event=clear-all-cache' );

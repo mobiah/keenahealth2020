@@ -1,18 +1,18 @@
-=== ShortPixel Image Optimizer ===
+=== ShortPixel Image Optimizer - Optimize Images, Convert WebP & AVIF ===
 Contributors: ShortPixel
 Tags: convert webp, optimize images, image optimization, resize, compressor, image, avif, compression, optimize, image optimiser, image compression, compress pdf, compress jpg, compress png, performance, photography, smush, scale, pictures
 Requires at least: 4.8.0
-Tested up to: 6.0
+Tested up to: 6.1
 Requires PHP: 5.6
-Stable tag: 5.0.9
+Stable tag: 5.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Speed up your website & boost your SEO by compressing old & new images and PDFs. Optimize and convert WebP & AVIF.
+Optimize images & PDFs smartly. Create and compress next-gen WebP and AVIF formats. Smart crop and resize.
 
 == Description ==
 
-**A freemium, easy to use, comprehensive, stable, and frequently updated image compression plugin supported by the friendly team that created it.  :)**
+**Optimize images and create WebP/AVIF versions with an easy-to-use, comprehensive, lightweight, stable and frequently updated freemium image compression plugin supported by the friendly team that created it.**
 
 Increase your website's SEO ranking, number of visitors, and ultimately your sales by optimising any image or PDF document on your website.
 ShortPixel is an easy to use, lightweight, install-and-forget-about-it <a href="https://shortpixel.com" target="_blank">image optimization</a> plugin that can compress all your past images and PDF documents with a single click. New images are automatically resized/rescaled and optimized on the fly, in the background. It's also compatible with any gallery, slider or eCommerce plugin.
@@ -28,6 +28,18 @@ Optimized images mean better user experience, better PageSpeed Insights or GTmet
 
 Make an instant <a href="https://shortpixel.com/image-compression-test" target="_blank">image compression test</a> of your site or <a href="https://shortpixel.com/online-image-compression" target="_blank">compress some images</a> to test our optimization algorithms.
 
+**<a href="https://shortpixel.com/spio-unlimited/" target="_blank">New Plan: ShortPixel Unlimited</a>**
+
+This is the perfect monthly plan for single website owners.
+It allows you to optimize an unlimited number of images with ShortPixel Image Optimizer on your website.
+Read more details on our <a href="https://shortpixel.com/knowledge-base/article/555-how-does-the-unlimited-plan-work" target="_blank">dedicated page</a>.
+
+**New! Smart Cropping**
+
+With this new feature, all thumbnails used on your website are not only optimized, but also regenerated to fully display the subject of the image.
+All thumbnails fully display the subject and look consistent as well. The new thumbnails look sharper (and can be slightly bigger) than the ones created by WordPress. Ideal for e-commerce and other websites where the images are paramount to selling the products or to support the content. See <a href="https://shortpixel.com/knowledge-base/article/182-what-is-smart-cropping" target="_blank">an example</a>.
+
+
 **Why is ShortPixel the best choice when it comes to image optimization or PDF compression?**
 
 * popular plugin with over 300,000 active installations - according to WordPress
@@ -35,6 +47,7 @@ Make an instant <a href="https://shortpixel.com/image-compression-test" target="
 * option to convert any JPEG, PNG or GIF (even animated ones!) to **WebP** and **AVIF** for more Google love. <a href="https://shortpixel.com/blog/how-webp-images-can-speed-up-your-site/" target="_blank">How to enable WebP?</a>. <a href="https://shortpixel.com/blog/what-is-avif-and-why-is-it-good/" target="_blank">What is AVIF and why is it good?</a>.
 * **New!:** full <a href="https://shortpixel.com/knowledge-base/article/537-wp-cli-support-for-shortpixel-image-optimizer" target="_blank">WP-CLI support</a> for background processing, useful especially for websites with a very large Media Library
 * **New!:** Easily add <a href="https://shortpixel.com/knowledge-base/article/543-how-to-schedule-a-cron-event-to-run-shortpixel-image-optimizer" target="_blank">recurrent cron jobs</a> for background optimization. Useful if you have users uploading images via the front end of your website
+* **New!:** Smart Cropping. Generate subject-centered thumbnails using ShortPixel's AI engine 
 * option to automatically convert PNG to JPG if that will result in smaller images. Ideal for large images in PNG format
 * option to include the next generation images (WebP and AVIF) into the front-end pages by using the `<picture>` tag instead of `<img>`, independent from generating them through the plugin
 * compatible with WP Retina 2x - all **retina images** are automatically compressed. <a href="https://shortpixel.com/blog/how-to-use-optimized-retina-images-on-your-wordpress-site-for-best-user-experience-on-apple-devices/" target="_blank">How to benefit from Retina displays?</a>
@@ -271,8 +284,18 @@ filters the URLs that will be sent to optimisation, `$URLs` is a plain array;
 `apply_filters('shortpixel/db/chunk_size', $chunk);`
 the `$chunk` is the value ShortPixel chooses to use as the number of selected records in one query (based on total table size), some hosts work better with a different value;
 
+For version 4.22.10 and earlier:
+
 `apply_filters('shortpixel/backup/paths', $PATHs, $mainPath);`
 filters the array of paths of the images sent for backup and can be used to exclude certain paths/images/thumbs from being backed up, based on the image path. `$mainPath` is the path of the main image, while `$PATHs` is an array with all files to be backed up (including thumbnails);
+
+For version 5.0.0 and later:
+
+`apply_filters('shortpixel/image/skip_backup', false, $this->getFullPath(), $this->is_main_file)`
+filters the images that are skipped or not from the backup. Return true for the type of images to be skipped in the backup. If you check if `is_main_file` is true and return false (do not skip backup), while while otherwise returning true, the backup will be kept only for the main image. We suggest using it in conjuction with this action that fires right after the restore from backup is done:
+
+`do_action('shortpixel/image/after_restore', $this, $this->id, $cleanRestore);`
+This action can be used to cleanup the meta data from the database, regenerate thumbnails after restoring the main file, writing the updated meta data, etc.
 
 `apply_filters('shortpixel/settings/image_sizes', $sizes);`
 filters the array (`$sizes`) of image sizes that can be excluded from processing (displayed in the plugin Advanced settings);
@@ -298,6 +321,9 @@ add_filter('shortpixel/init/optimize_on_screens', function ($screens) {
 	return $screens;
 	});
 `
+
+`add_filter('shortpixel/image/filecheck', function () { return true; });`
+This filter forces a file check for WebP/AVIF in case they were manually removed from disk.
 
 In order to define custom thumbnails to be picked up by the optimization you have two options, both comma separated defines:
 
@@ -340,6 +366,76 @@ Add HTTP basic authentication credentials by defining these constants in wp-conf
 8. Check other optimized images' status - themes or other plugins' images. (Media>Other Media)
 
 == Changelog ==
+
+= 5.1.6 =
+Release date December 31, 2022
+* Fix: in some cases, AVIF files were not cropped correctly;
+* Language: 0 new strings added, 0 updated, 0 fuzzed, and 0 deprecated.
+
+= 5.1.5 =
+Release date November 29, 2022
+* Fix: WebP/AVIF delivery now works correctly, without affecting SVG files or other images or requests (e.g. in WooCommerce). Sorry about this!;
+* Fix: a PHP warning was displayed if no valid API key was added;
+* Fix: error in Custom Media if the folder is not in the root directory;
+* Language: 0 new strings added, 0 updated, 0 fuzzed, and 0 deprecated.
+
+= 5.1.4 =
+Release date November 28, 2022
+* New: added a filter to force a file check for WebP/AVIF if they were manually deleted from disk;
+* Fix: if only small WebPs are available, include the JPG version in the `picture` tag to avoid blurry images;
+* Fix: the notification about unlisted thumbnails incorrectly reported WebP and AVIF files;
+* Fix: improved integration with WP Offload Media by including Retina images in virtual/offload file checks;
+* Fix: if the main file was optimized but some thumbnails did not have WebP/AVIF, it was not displayed correctly in the UI;
+* Fix: added a % margin when generating WebPs/AVIF, so that files that are only a few bytes larger are also generated;
+* Fix: when running WP-CLI, the percentage of finished items in the total was calculated incorrectly;
+* Fix: the settings page crashed in certain cases for new accounts;
+* Tweak: various CSS fixes and improvements on the Media Library, especially for cases with many thumbnails;
+* Language: 2 new strings added, 2 updated, 0 fuzzed, and 0 deprecated.
+
+= 5.1.3 =
+Release date November 9, 2022
+* Fix: a typo related to Custom Media that caused an error when adding a new Custom Media folder;
+* Fix: some minor cosmetic fixes on the settings and bulk processing pages for new plans;
+* Fix: the notification about the ShortPixel column in List view is now displayed when you switch back to the Grid view in Media Library;
+* Language: 1 new string added, 0 updated, 0 fuzzed, and 0 deprecated.
+
+= 5.1.2 =
+Release date November 7, 2022
+* Fix: when converting PNG to JPG, the PNG path was saved in the post editor, which could result in broken images;
+* Fix: the bulk restore of Custom Media was performed without saving it to the previous bulks history;
+* Fix: various wording updates and fixes throughout the plugin code;
+* Fix: PNG to JPG conversion failed under certain Windows environments due to wrong path construction;
+* Fix: the plugin now works with thumbs that have a numeric name (e.g. `0`);
+* Fix: on certain hosting restrictions, requesting a new API key caused a fatal error;
+* Fix: the original image was not processed when thumbnail processing was turned off;
+* Compat: added compatibility with the Uncode theme's adaptive images feature;
+* Tweak: minor updates to the settings and Media Library layout for new plans that will be introduced soon;
+* Tweak: added filter/constant that can be used by affiliates;
+* Tweak: reworked plugin notification system to make it more robust and reliable;
+* Language: 44 new strings added, 2 updated, 0 fuzzed, and 39 deprecated.
+
+= 5.1.1 =
+Release date October 20th, 2022
+* Fix: a fatal error for PHP 7.2 and lower was discovered and fixed by @KZeni, thanks!
+* Language: 0 new strings added, 0 updated, 0 fuzzed, and 0 deprecated.
+
+
+= 5.1.0 =
+Release date October 20th, 2022
+* New: added SmartCropping, especially useful for eCommerce sites;
+* New: if the WebP/AVIF files are larger than the JPG/PNG/GIF version, they are no longer generated to ensure that the smallest file is always delivered;
+* Fix: various DB-related settings were adjusted for files with very long names and to keep AVIF/WebP optimization data correct;
+* Fix: bulk processing history was lost when deleting the plugin;
+* Fix: the file name in the bulk preview was added back;
+* Fix: various situations and edge cases with WPML are now fixed;
+* Fix: when a Custom Media item was excluded, there was no clear message next to it;
+* Fix: added a check to prevent re-optimization when using bulk actions in the Media Library;
+* Fix: the deactivation pop-up is also displayed in a multisite environment;
+* Fix: minor wording and CSS fixes in the plugin settings and notifications;
+* Fix: if there are still images to optimize and/or generate, all of them are counted and displayed correctly in the Media Library;
+* Tweak: added check of necessary GD library functions to use PNG to JPG conversion;
+* Compat: in some very special cases an error was triggered when the YITH Watermark Premium plugin was enabled;
+* Language: 20 new strings added, 2 updated, 1 fuzzed, and 2 deprecated.
 
 = 5.0.9 =
 Release date August 29th, 2022

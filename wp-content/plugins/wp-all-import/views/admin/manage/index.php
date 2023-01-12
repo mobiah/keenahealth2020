@@ -1,5 +1,19 @@
 <h2></h2> <!-- Do not remove -->
 
+<?php
+	// notify user
+	if (!PMXI_Plugin::getInstance()->getOption('dismiss_manage_bottom')) {
+		?>
+		<div class="updated_bottom">
+			<?php printf(
+					__('<span><a href="https://wordpress.org/support/view/plugin-reviews/wp-all-import#postform" target="_blank">If our plugin helped you, please rate us on WordPress.org. It would really help us!</a><a href="https://wordpress.org/support/view/plugin-reviews/wp-all-import#postform" class="pmxi_stars" target="_blank"></a></span><a href="javascript:void(0);" id="dismiss_manage_bottom">dismiss</a>', 'wp_all_import_plugin')
+			) ?>
+		</div>
+		<?php
+	}
+?>
+
+
 <div class="wpallimport-header" style="overflow:hidden; height: 70px; padding-top: 10px; margin-bottom: -15px;">
 	<div class="wpallimport-logo"></div>
 	<div class="wpallimport-title">
@@ -350,19 +364,6 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 		</div>
 	</div>
 	<div class="clear"></div>
-
-	<?php
-	// notify user
-	if (!PMXI_Plugin::getInstance()->getOption('dismiss_manage_bottom')) {
-		?>
-		<div class="updated_bottom"><p>
-			<?php printf(
-					__('<a href="https://wordpress.org/support/view/plugin-reviews/wp-all-import#postform" target="_blank">If our plugin helped you, please rate us on WordPress.org. It would really help us!</a> <a href="https://wordpress.org/support/view/plugin-reviews/wp-all-import#postform" class="pmxi_stars" target="_blank"></a> <br/><br/><a href="javascript:void(0);" id="dismiss_manage_bottom">dismiss</a>', 'wp_all_import_plugin')
-			) ?>
-		</p></div>
-		<?php
-	}
-	?>
 
 	<p style='font-size: 1.3em; font-weight: bold;'><a href="http://www.wpallimport.com/wordpress-xml-csv-import/?utm_source=import-plugin-free&utm_medium=help&utm_campaign=upgrade-to-pro" target="_blank" class="upgrade_link"><?php _e('Find out more about the Pro edition of WP All Import.', 'wp_all_import_plugin'); ?></a></p>
 

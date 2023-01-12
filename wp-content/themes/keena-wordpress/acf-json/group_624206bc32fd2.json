@@ -1,43 +1,47 @@
 {
     "key": "group_624206bc32fd2",
     "title": "Publication Details",
-    "fields": [{
-        "key": "field_624206ccb3b37",
-        "label": "Type",
-        "name": "type",
-        "type": "select",
-        "instructions": "",
-        "required": 1,
-        "conditional_logic": 0,
-        "wrapper": {
-            "width": "",
-            "class": "",
-            "id": ""
-        },
-        "choices": {
-            "advisory services": "Advisory Services",
-            "conversion and archival": "Conversion and Archival",
-            "data analytics and management": "Data Analytics and Management",
-            "interfaces and interoperability": "Interfaces and Interoperability",
-            "patient engagement": "Patient Engagement",
-            "population health": "Population Health",
-            "system and business automation": "System and Business Automation",
-            "workflow efficiency": "Workflow Efficiency"
-        },
-        "default_value": false,
-        "allow_null": 0,
-        "multiple": 0,
-        "ui": 1,
-        "ajax": 0,
-        "return_format": "value",
-        "placeholder": ""
-    }],
+    "fields": [
+        {
+            "key": "field_624206ccb3b37",
+            "label": "Type",
+            "name": "type",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "advisory_services": "Advisory Services",
+                "conversion_and_archival": "Conversion and Archival",
+                "data_analytics_and_management": "Data Analytics and Management",
+                "interfaces_and_interoperability": "Interfaces and Interoperability",
+                "patient_engagement": "Patient Engagement",
+                "population_health": "Population Health",
+                "system_and_business_automation": "System and Business Automation",
+                "workflow_efficiency": "Workflow Efficiency"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
     "location": [
-        [{
-            "param": "post_type",
-            "operator": "==",
-            "value": "publications"
-        }]
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "publications"
+            }
+        ]
     ],
     "menu_order": 0,
     "position": "normal",

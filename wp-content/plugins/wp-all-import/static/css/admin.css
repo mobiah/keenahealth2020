@@ -620,18 +620,33 @@ body.wpallimport-plugin {
 	width: 125px;
 	height: 24px;
 	position: relative;
-	top:10px;
+	top:3px;
 }
 .wpallimport-plugin .updated_bottom{
 	background-color: #FFFFE0;
 	border-color: #E6DB55;
 	margin: 15px 0 15px;
-	padding: 0 0.6em;
-	-moz-border-radius: 3px 3px 3px 3px;
+	padding: 12px;
 	border-radius: 3px;
 	border-style: solid;
 	border-width: 1px;
+	margin-top: 0px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	gap: 12px;
 }
+
+.wpallimport-plugin .updated_bottom span {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	gap: 12px;
+}
+
+
 .wpallimport-plugin .wpallimport-delete-posts-warning{
 	display: none;
 }
@@ -3019,23 +3034,29 @@ p.upgrade_link {
 	background: #fff;
 	color: #222222;
 	position: relative;
+	overflow: hidden;
 }
 	.wpallimport-plugin #processbar div{
 		background: #76d771;
 		height: 70px;
 		width: 0%;
+		border-radius: 0;
+		-moz-border-radius: 0;
+		-khtml-border-radius: 0;
+		-webkit-border-radius: 0;
 		position: absolute;		
 		top:0;
 	}
 .wpallimport-plugin .progress_processed {
+	margin-top:20px;
 	margin-bottom: 20px;
-	text-align: right;
+
 }
 .wpallimport-plugin .progress_details {
-	text-align: right;
+
 }
 .wpallimport-plugin .progress_details .progress_details_item {
-	margin-left: 10px;
+	margin-left: 0;
 }
 .wpallimport-plugin #import_progress{
 	color: #000000;
@@ -3055,16 +3076,16 @@ p.upgrade_link {
 		color: #326C3B;
 		font-size: 60px;
 	}
-.wpallimport-plugin #right_progress{ 
-	position: absolute;
+.wpallimport-plugin #right_progress{
+	text-align:center;
 	right: 0;
 	color:#777;
 }
 	.wpallimport-plugin #right_progress span span {
 		color:#000;
 	}
-.wpallimport-plugin #left_progress{ 
-	position: absolute;
+.wpallimport-plugin #left_progress{
+	text-align:center;
 	left: 0;
 	color: #777;
 }

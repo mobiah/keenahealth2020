@@ -1,0 +1,120 @@
+{
+    "key": "group_63936ccd15a33",
+    "title": "Insights",
+    "fields": [
+        {
+            "key": "field_63936cd4c4dd7",
+            "label": "Insight",
+            "name": "insight",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_63936d05c4dda",
+                    "label": "Link",
+                    "name": "link",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_63936d1fc4ddb",
+                    "label": "Type",
+                    "name": "type",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "case_study": "Case Study",
+                        "white_paper": "White Paper",
+                        "sales_sheet": "Sales Sheet",
+                        "brochure": "Brochure"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63936d62c4ddc",
+                    "label": "Badge (Parent)",
+                    "name": "badge_parent",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "advisory_services": "Advisory Services",
+                        "barcode_reader": "Barcode Reader",
+                        "barcode_reader_altera": "Barcode Reader Altera",
+                        "barcode_reader_nextgen": "Barcode Reader NextGen",
+                        "chart2pdf": "Chart2PDF",
+                        "clinical_automation": "Clinical Automation",
+                        "conversions": "Conversions",
+                        "data_analytics_and_management": "Data Analytics and Management",
+                        "intelefiler": "InteleFiler",
+                        "interfaces": "Interfaces",
+                        "interoperability": "Interoperability",
+                        "livearchive": "LiveArchive",
+                        "patient_engagement": "Patient Engagement",
+                        "population_health": "Population Health"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "insights"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1670606471
+}

@@ -1,8 +1,8 @@
 === Export any WordPress data to XML/CSV ===
 Contributors: soflyy, wpallimport
 Requires at least: 5.0
-Tested up to: 6.0
-Stable tag: 1.3.7
+Tested up to: 6.1
+Stable tag: 1.3.8
 Tags: export, wordpress csv export, wordpress xml export, export woocommerce, migrate, export csv from wordpress, export xml from wordpress, advanced xml export, advanced csv export, export data, bulk csv export, export custom post type, export woocommerce products, export woocommerce orders, migrate woocommerce, csv export, export csv, xml export, export xml, csv exporter, datafeed
 
 Easily export any data from WordPress. Drag & drop to create a completely custom spreadsheet, CSV, or XML file.
@@ -77,6 +77,17 @@ Sometimes you'll want to export your data so that some other tool, software, or 
 
 If you want to set up a WordPress XML export all you need to do is select 'XML' when configuring your export template. And just like a CSV export, an XML export will allow you to customize the element names and put them in any order you wish.
 
+= Related Plugins =
+[Import any XML or CSV File to WordPress](https://wordpress.org/plugins/wp-all-import/)
+[Import Products from any XML or CSV to WooCommerce](https://wordpress.org/plugins/woocommerce-xml-csv-product-import/)
+[Export Products to CSV/XML for WooCommerce](https://wordpress.org/plugins/product-export-for-woocommerce/)
+[Custom Product Tabs for WooCommerce WP All Import Add-on](https://wordpress.org/plugins/custom-product-tabs-wp-all-import-add-on/)
+[Export Orders to CSV/XML for WooCommerce](https://wordpress.org/plugins/order-export-for-woocommerce/)
+[Export WordPress Users to CSV/XML](https://wordpress.org/plugins/export-wp-users-xml-csv/)
+
+= Related Tutorials =
+[How to Export WooCommerce Products to Google Merchant Center](https://www.wpallimport.com/documentation/how-to-export-woocommerce-products-to-google-merchant-center/)
+
 == Premium Support ==
 Upgrade to the Pro edition of WP All Export for premium support.
 
@@ -90,6 +101,10 @@ Either: -
 * Unzip wp-all-export.zip and upload the contents to /wp-content/plugins/, and then activate the plugin from the Plugins page in WordPress
 
 == Changelog ==
+
+= 1.3.8 =
+* improvement: only contact Scheduling service if a Scheduling license is set
+* bug fix: enable use of 's', 'LIKE' and 'NOT LIKE' in WP_Query exports
 
 = 1.3.7 =
 * bug fix: cannot save Scheduling service license key

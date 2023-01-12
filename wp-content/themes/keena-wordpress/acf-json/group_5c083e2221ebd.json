@@ -783,7 +783,76 @@
                     "label": "Publications",
                     "name": "publications",
                     "type": "select",
+                    "instructions": "All Insights will display all insights posts.",
+                    "required": 0,
+                    "conditional_logic": [
+                        {
+                            "field": "field_5c083faf137b9",
+                            "operator": "==",
+                            "value": "pubs"
+                        }
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "solution_types": "Solution Types",
+                        "advisory_services": "Advisory Services",
+                        "conversion_and_archival": "Conversion and Archival",
+                        "data_analytics_and_management": "Data Analytics and Management",
+                        "interfaces_and_interoperability": "Interfaces and Interoperability",
+                        "live_archive": "LiveArchive",
+                        "patient_engagement": "Patient Engagement",
+                        "population_health": "Population Health",
+                        "system_and_business_automation": "System and Business Automation",
+                        "workflow_efficiency": "Workflow Efficiency"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_63bdd5a703217",
+                    "label": "Format",
+                    "name": "format",
+                    "type": "radio",
                     "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        {
+                            "field": "field_5c083faf137b9",
+                            "operator": "==",
+                            "value": "pubs"
+                        }
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Grid": "Grid",
+                        "Slideshow": "Slideshow"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "vertical",
+                    "return_format": "value",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_63a20c9301d27",
+                    "label": "Filter",
+                    "name": "filter",
+                    "type": "radio",
+                    "instructions": "Choose Show to allow filtering. If set to show, all publications will be displayed.",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -800,22 +869,15 @@
                         "id": ""
                     },
                     "choices": {
-                        "advisory services": "Advisory Services",
-                        "conversion and archival": "Conversion and Archival",
-                        "data analytics and management": "Data Analytics and Management",
-                        "interfaces and interoperability": "Interfaces and Interoperability",
-                        "patient engagement": "Patient Engagement",
-                        "population health": "Population Health",
-                        "system and business automation": "System and Business Automation",
-                        "workflow efficiency": "Workflow Efficiency"
+                        "Show": "Show",
+                        "Hide": "Hide"
                     },
-                    "default_value": false,
                     "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 1,
-                    "ajax": 0,
+                    "other_choice": 0,
+                    "default_value": "Hide",
+                    "layout": "vertical",
                     "return_format": "value",
-                    "placeholder": ""
+                    "save_other_choice": 0
                 },
                 {
                     "key": "field_5c12d7b420c68",

@@ -20,7 +20,7 @@ class QuickActions {
 			<h2>Quick Actions</h2>
 			<p>Caching reduces the load on your site by storing the results of a request, so that it can be served to the next visitor. This significantly increases the speed of the site. However, this can lead to a visitor receiving an old version of the page. This can be fixed by clearing the cache below.</p>
 			<?php self::display_maxcdn_info(); ?>
-			<p><b>Note:</b> Cache is cleared by environment not by domain. This does not clear <b>Global Edge Security</b> cache.</p>
+			<p><b>Note:</b> Cache is cleared by environment not by domain.</p>
 			<?php
 			self::display_panel_links();
 			self::display_all_cache_button_panel( $status );

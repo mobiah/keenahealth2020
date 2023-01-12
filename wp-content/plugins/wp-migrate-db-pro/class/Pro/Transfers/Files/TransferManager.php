@@ -108,7 +108,8 @@ class TransferManager extends \DeliciousBrains\WPMDB\Pro\Transfers\Abstracts\Tra
         $transfer_max                = $state_data['site_details']['remote']['transfer_bottleneck'];
         $actual_bottleneck           = $state_data['site_details']['remote']['max_request_size'];
         $high_performance_transfers  = $state_data['site_details']['remote']['high_performance_transfers'];
-        $force_performance_transfers = $state_data['forceHighPerformanceTransfers'];
+        $force_performance_transfers = isset($state_data['forceHighPerformanceTransfers']) ? $state_data['forceHighPerformanceTransfers'] : false;
+        $force_performance_transfers = apply_filters('wpmdb_force_high_performance_transfers', $force_performance_transfers, $state_data);
 
         $bottleneck                 = apply_filters('wpmdb_transfers_push_bottleneck',
             $actual_bottleneck); //Use slider value
@@ -185,10 +186,12 @@ class TransferManager extends \DeliciousBrains\WPMDB\Pro\Transfers\Abstracts\Tra
      */
     public function handle_pull($processed, $state_data, $remote_url)
     {
-        $transfer_max               = $this->util->get_transfer_bottleneck();
-        $actual_bottleneck          = $state_data['site_details']['local']['max_request_size'];
-        $high_performance_transfers = $state_data['site_details']['local']['high_performance_transfers'];
-        $force_performance_transfers = $state_data['forceHighPerformanceTransfers'];
+        $transfer_max                = $this->util->get_transfer_bottleneck();
+        $actual_bottleneck           = $state_data['site_details']['local']['max_request_size'];
+        $high_performance_transfers  = $state_data['site_details']['local']['high_performance_transfers'];
+        $force_performance_transfers = isset($state_data['forceHighPerformanceTransfers']) ? $state_data['forceHighPerformanceTransfers'] : false;
+        $force_performance_transfers = apply_filters('wpmdb_force_high_performance_transfers', $force_performance_transfers, $state_data);
+
         $bottleneck                 = apply_filters('wpmdb_transfers_pull_bottleneck',
             $actual_bottleneck); //Use slider value
         $fallback_payload_size = 2500000;
@@ -266,12 +269,11 @@ class TransferManager extends \DeliciousBrains\WPMDB\Pro\Transfers\Abstracts\Tra
 
         $state_data['sig'] = $this->http_helper->create_signature($sig_data, $state_data['key']);
 
-        $state_data['content']         = $payload;
         $state_data['action']          = $action;
         $state_data['remote_state_id'] = $state_data['migration_state_id'];
         $ajax_url                      = trailingslashit($remote_url) . 'wp-admin/admin-ajax.php';
 
-        $response = $this->sender->post_payload($state_data, $ajax_url);
+        $response = $this->sender->post_payload($payload, $state_data, $ajax_url);
 
         $decoded = json_decode($response->body);
 
@@ -355,12 +357,11 @@ class TransferManager extends \DeliciousBrains\WPMDB\Pro\Transfers\Abstracts\Tra
     public function attempt_post($state_data, $remote_url, $handle)
     {
         rewind($handle);
-        $stream_contents = base64_encode(gzencode(stream_get_contents($handle)));
         $stage           = $state_data['stage'];
         $key             = $stage === 'media_files' ? 'mf' : 'tp';
 
         try {
-            $transfer_status = $this->post($stream_contents, $state_data, "wpmdb{$key}_transfers_receive_file", $remote_url);
+            $transfer_status = $this->post($handle, $state_data, "wpmdb{$key}_transfers_receive_file", $remote_url);
         } catch (\Exception $e) {
             $this->util->catch_general_error($e->getMessage());
         }

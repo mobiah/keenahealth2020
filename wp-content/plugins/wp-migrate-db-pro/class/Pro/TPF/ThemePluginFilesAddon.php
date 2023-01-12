@@ -3,6 +3,7 @@
 namespace DeliciousBrains\WPMDB\Pro\TPF;
 
 use DeliciousBrains\WPMDB\Common\Filesystem\Filesystem;
+use DeliciousBrains\WPMDB\Common\MigrationPersistence\Persistence;
 use DeliciousBrains\WPMDB\Common\Profile\ProfileManager;
 use DeliciousBrains\WPMDB\Common\Properties\Properties;
 use DeliciousBrains\WPMDB\Common\Util\Util;
@@ -126,13 +127,12 @@ class ThemePluginFilesAddon extends AddonAbstract
         add_action('wpmdb_migration_complete', [$this->theme_plugin_files_finalize, 'cleanup_transfer_migration']);
         add_action('wpmdb_respond_to_push_cancellation', [$this->theme_plugin_files_finalize, 'remove_tmp_files_remote']);
         add_action('wpmdb_cancellation', [$this->theme_plugin_files_finalize, 'cleanup_transfer_migration']);
-        add_action('wpmdb_after_finalize_migration', [$this->theme_plugin_files_finalize, 'cleanup_migration_cookie']);
-        add_action('wpmdb_cancellation', [$this->theme_plugin_files_finalize, 'cleanup_migration_cookie']);
         add_action('wpmdb_load_assets', [$this, 'load_assets']);
+        add_action('wpmdb_before_verify_connection_to_remote_site', [$this, 'cleanup_migration_cookie']);
         add_filter('wpmdb_diagnostic_info', [$this, 'diagnostic_info']);
         add_filter('wpmdb_establish_remote_connection_data', [$this, 'establish_remote_connection_data']);
         add_filter('wpmdb_data', [$this, 'js_variables']);
-        add_filter('wpmdb_site_details', [$this, 'filter_site_details']);
+        add_filter('wpmdb_site_details', [$this, 'filter_site_details'], 10, 2);
     }
 
     /**
@@ -316,14 +316,17 @@ class ThemePluginFilesAddon extends AddonAbstract
     }
 
     /**
-     * Get must-use plugin files 
-     * @return array
+     * Get must-use plugin files
+     * @return bool|array
      */
     public function get_local_muplugin_files()
     {
-        $wpmu_plugin_dir = $this->filesystem->slash_one_direction(WPMU_PLUGIN_DIR);
+        if (!defined('WPMU_PLUGIN_DIR') || !is_dir(WPMU_PLUGIN_DIR)) {
+            return false;
+        }
+        $wpmu_plugin_dir  = $this->filesystem->slash_one_direction(WPMU_PLUGIN_DIR);
         $wpmu_plugin_tree = scandir($wpmu_plugin_dir);
-        $to_exclude = [
+        $to_exclude       = [
             '.',
             '..',
             '.DS_Store',
@@ -340,14 +343,17 @@ class ThemePluginFilesAddon extends AddonAbstract
 
 
      /**
-     * Gets all wp-content files not included in other stages 
-     * @return array
+     * Gets all wp-content files not included in other stages
+     * @return bool|array
      */
     public function get_local_other_files()
     {
-        $wp_content_dir = $this->filesystem->slash_one_direction(WP_CONTENT_DIR);
+        if (!defined('WP_CONTENT_DIR') || !is_dir(WP_CONTENT_DIR)) {
+            return false;
+        }
+        $wp_content_dir  = $this->filesystem->slash_one_direction(WP_CONTENT_DIR);
         $wp_content_tree = scandir($wp_content_dir);
-        $to_exclude = [
+        $to_exclude      = [
             '.',
             '..',
             '.DS_Store',
@@ -361,8 +367,8 @@ class ThemePluginFilesAddon extends AddonAbstract
         ];
 
         return $this->prepare_files_list(
-            $wp_content_tree, 
-            $to_exclude, 
+            $wp_content_tree,
+            $to_exclude,
             $this->filesystem->slash_one_direction(WP_CONTENT_DIR)
         );
     }
@@ -375,7 +381,7 @@ class ThemePluginFilesAddon extends AddonAbstract
      * @param array $base_path Path to directory
      * @return array
      **/
-    public function prepare_files_list($all_files, $to_exclude, $base_path) 
+    public function prepare_files_list($all_files, $to_exclude, $base_path)
     {
         $files = array_diff($all_files, $to_exclude);
         sort($files);
@@ -391,12 +397,12 @@ class ThemePluginFilesAddon extends AddonAbstract
                     'path'     => $path,
                 ]
             ];
-            
+
         }
 
         return $formatted_files;
     }
-    
+
 
 
     /**
@@ -458,8 +464,13 @@ class ThemePluginFilesAddon extends AddonAbstract
      *
      * @return mixed
      */
-    public function filter_site_details($site_details)
+    public function filter_site_details($site_details, $state_data)
     {
+        $intent = isset($state_data, $state_data['intent']) ? $state_data['intent'] : '';
+        if(in_array($intent, ['find_replace', 'savefile', 'import'])) {
+            return $site_details;
+        }
+        //check it we need this step here maybe with state data.
         if (isset($site_details['plugins'])) {
             return $site_details;
         }
@@ -468,22 +479,37 @@ class ThemePluginFilesAddon extends AddonAbstract
             return $site_details;
         }
 
-        $folder_writable = $this->receiver->is_tmp_folder_writable('themes');
+        
 
-        $site_details['plugins']                   = $this->filesystem->get_local_plugins();
-        $site_details['plugins_path']              = $this->filesystem->slash_one_direction(WP_PLUGIN_DIR);
-        $site_details['muplugins']                 = $this->get_local_muplugin_files();
-        $site_details['muplugins_path']            = $this->filesystem->slash_one_direction(WPMU_PLUGIN_DIR);
-        $site_details['themes']                    = $this->get_local_themes();
-        $site_details['themes_path']               = $this->filesystem->slash_one_direction(WP_CONTENT_DIR) . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR;
-        $site_details['others']                    = $this->get_local_other_files();
-        $site_details['content_dir']               = $this->filesystem->slash_one_direction(WP_CONTENT_DIR);
-        $site_details['local_tmp_folder_check']    = $folder_writable;
-        $site_details['local_tmp_folder_writable'] = $folder_writable['status'];
-        $site_details['transfer_bottleneck']       = $this->transfer_helpers->get_transfer_bottleneck();
-        $site_details['max_request_size']          = $this->util->get_bottleneck();
-        $site_details['php_os']                    = PHP_OS;
-
+        $site_details['plugins']             = $this->filesystem->get_local_plugins();
+        $site_details['plugins_path']        = $this->filesystem->slash_one_direction(WP_PLUGIN_DIR);
+        $site_details['muplugins']           = $this->get_local_muplugin_files();
+        $site_details['muplugins_path']      = $this->filesystem->slash_one_direction(WPMU_PLUGIN_DIR);
+        $site_details['themes']              = $this->get_local_themes();
+        $site_details['themes_path']         = $this->filesystem->slash_one_direction(WP_CONTENT_DIR) . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR;
+        $site_details['others']              = $this->get_local_other_files();
+        $site_details['content_dir']         = $this->filesystem->slash_one_direction(WP_CONTENT_DIR);
+        $site_details['transfer_bottleneck'] = $this->transfer_helpers->get_transfer_bottleneck();
+        $site_details['max_request_size']    = $this->util->get_bottleneck();
+        $site_details['php_os']              = PHP_OS;
+        if (in_array($intent, ['push', 'pull'])) {
+            $stages                                    = !empty($state_data['stages']) ? json_decode($state_data['stages']) : [];
+            $tpf_stages                                = array_intersect($stages, ['theme_files', 'plugin_files', 'muplugin_files', 'other_files']);
+            $to_test                                   = empty($tpf_stages) ? ['theme_files'] : $tpf_stages;
+            $folder_writable                           = $this->receiver->is_tmp_folder_writable(reset($to_test));
+            $site_details['local_tmp_folder_check']    = $folder_writable;
+            $site_details['local_tmp_folder_writable'] = $folder_writable['status'];
+        }
+       
         return $site_details;
+    }
+
+    /**
+     * Remove cookie data stored in wp_options during migration
+     *
+     **/
+    public function cleanup_migration_cookie()
+    {
+        Persistence::removeRemoteWPECookie();
     }
 }

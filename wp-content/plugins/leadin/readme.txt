@@ -3,10 +3,10 @@ Contributors: HubSpotDev, leadin
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: CRM, Email Marketing, Live Chat, Marketing, Analytics, form, popups, newsletter, contact management, chat, contact form, marketing automation
-Requires at least: 4.0
-Tested up to: 6.0
-Requires PHP: 5.6
-Stable tag: 9.0.123
+Requires at least: 5.4
+Tested up to: 6.1.1
+Requires PHP: 7.2
+Stable tag: 10.0.10
 
 Capture, organize and engage web visitors with free live chat, forms, CRM (contact management), email marketing, and analytics. Easy to use, no coding.
 
@@ -380,12 +380,12 @@ Please visit the <a href="https://community.hubspot.com/?utm_source=wordpress-pl
 == Changelog ==
 
 <a href="http://plugins.svn.wordpress.org/leadin/trunk/changelog.txt" target="_blank">Full changelog here</a>
-- Current version: 9.0.123
-- Version release date: 2022-09-15
+- Current version: 10.0.10
+- Version release date: 2023-01-10
 
-= 9.0.108 (2022-09-14) =
-* Enqueue Meetings script
+= 10.0.7 (2023-01-10) =
+* Remove getHublet endpoint
 
-= 9.0.91 (2022-09-13) =
-* Changed the placeholder text for form blocks
+= 10.0.0 (2023-01-06) =
+* Plugin restructure to use WordPress env and scripts
 
