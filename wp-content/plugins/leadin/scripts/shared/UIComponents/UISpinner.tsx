@@ -21,17 +21,21 @@ const SpinnerInner = styled.div`
   height: 100%;
 `;
 
-const Circle = styled.circle`
+interface IColorProp {
+  color: string;
+}
+
+const Circle = styled.circle<IColorProp>`
   fill: none;
-  stroke: ${(props: any) => props.color};
+  stroke: ${props => props.color};
   stroke-width: 5;
   stroke-linecap: round;
   transform-origin: center;
 `;
 
-const AnimatedCircle = styled.circle`
+const AnimatedCircle = styled.circle<IColorProp>`
   fill: none;
-  stroke: ${(props: any) => props.color};
+  stroke: ${props => props.color};
   stroke-width: 5;
   stroke-linecap: round;
   transform-origin: center;

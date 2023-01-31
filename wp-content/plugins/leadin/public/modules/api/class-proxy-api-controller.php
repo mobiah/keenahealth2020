@@ -28,6 +28,7 @@ class Proxy_Api_Controller extends Base_Api_Controller {
 		'/usercontext-app/v1/external/onboarding/tasks/import-contacts/skip?',
 		'/usercontext-app/v1/external/onboarding/tasks/invite-your-team/skip?',
 		'/usercontext-app/v1/external/onboarding/tasks/visit-hubspot-marketplace/skip?',
+		'/integrations-proxy/v1/forms/business-units?',
 	);
 
 	/**

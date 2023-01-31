@@ -531,3 +531,5 @@ export function getFormDef(type: FormType) {
     })}) `,
   };
 }
+
+export type IFormTypeDefinition = ReturnType<typeof getFormDef>;

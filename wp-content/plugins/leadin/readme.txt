@@ -6,7 +6,7 @@ Tags: CRM, Email Marketing, Live Chat, Marketing, Analytics, form, popups, newsl
 Requires at least: 5.4
 Tested up to: 6.1.1
 Requires PHP: 7.2
-Stable tag: 10.0.10
+Stable tag: 10.0.19
 
 Capture, organize and engage web visitors with free live chat, forms, CRM (contact management), email marketing, and analytics. Easy to use, no coding.
 
@@ -380,12 +380,12 @@ Please visit the <a href="https://community.hubspot.com/?utm_source=wordpress-pl
 == Changelog ==
 
 <a href="http://plugins.svn.wordpress.org/leadin/trunk/changelog.txt" target="_blank">Full changelog here</a>
-- Current version: 10.0.10
-- Version release date: 2023-01-10
+- Current version: 10.0.19
+- Version release date: 2023-01-23
 
-= 10.0.7 (2023-01-10) =
-* Remove getHublet endpoint
+= 10.0.18 (2023-01-20) =
+* Add business unit proxy
 
-= 10.0.0 (2023-01-06) =
-* Plugin restructure to use WordPress env and scripts
+= 10.0.17 (2023-01-19) =
+* Add loader animation to prevent blank screen
 

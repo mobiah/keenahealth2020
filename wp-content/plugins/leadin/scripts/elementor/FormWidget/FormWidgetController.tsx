@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { connectionStatus } from '../../constants/leadinConfig';
 import ErrorHandler from '../../shared/Common/ErrorHandler';
 import FormEdit from '../../shared/Form/FormEdit';
+import { IFormAttributes } from './registerFormWidget';
 
 const ConnectionStatus = {
   Connected: 'Connected',
@@ -9,7 +10,7 @@ const ConnectionStatus = {
 };
 
 export default function FormWidgetController(
-  attributes: any,
+  attributes: IFormAttributes,
   setValue: Function
 ) {
   return () => {

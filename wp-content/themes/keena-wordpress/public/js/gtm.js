@@ -1,7 +1,10 @@
 $(document).ready(function () {
     $('.page-id-279 #gallery-5 .gallery-text p:empty').remove();
     $('.page-id-2188 #gallery-6 p:empty').remove();
+    $('.page-id-2805 p:empty').remove();
+    $('.pro-tip-info p:empty').remove();
     $('.page-id-279 .cs-locale').css('display', 'none');
+
     jQuery('a.dl-push').click(function (e) {
         dataLayer.push({
             'event': 'site_wide_clicks',
@@ -22,7 +25,7 @@ $(document).ready(function () {
         });
     }
 
-    if (window.location.href.indexOf("/ehr-migration-journal-collection/") > -1) {
+    if ((window.location.href.indexOf("/ehr-migration-journal-collection/") > -1) || (window.location.href.indexOf("/ehr-migration-journal-4/") > -1)) {
         var galleryParent = $('.gallery-items');
         galleryParent.each(function () {
             var tallestHeight = 0;
@@ -40,9 +43,28 @@ $(document).ready(function () {
     }
 
     // Insights blocks same height
+    // if ($('.solutions-same-height')) {
+    //     // set gallery items to equal height
+    //     var galleryParent = $('.page-id-2188 #gallery-4')
+    //     galleryParent.each(function () {
+    //         var tallestHeight = 0;
+    //         var sameHeightChildren = $(this).find(".solutions-same-height");
+
+    //         sameHeightChildren.each(function () {
+    //             var thisHeight = $(this).height();
+
+    //             if (thisHeight > tallestHeight) {
+    //                 tallestHeight = thisHeight;
+    //             }
+    //         });
+    //         sameHeightChildren.height(tallestHeight + 10);
+    //     });
+    // }
+
+
     if ($('.solutions-same-height')) {
         // set gallery items to equal height
-        var galleryParent = $('.page-id-2188 #gallery-4')
+        var galleryParent = $('.page-id-2805');
         galleryParent.each(function () {
             var tallestHeight = 0;
             var sameHeightChildren = $(this).find(".solutions-same-height");
@@ -54,7 +76,8 @@ $(document).ready(function () {
                     tallestHeight = thisHeight;
                 }
             });
-            sameHeightChildren.height(tallestHeight + 10);
+            sameHeightChildren.height(tallestHeight + 20);
+            $('.solutions-same-height.migration-callout-box').height(tallestHeight + 10);
         });
 
     }
@@ -364,7 +387,6 @@ $(document).ready(function () {
         }
     }
 
-
     if ($('#insightsDropdown')) {
         var insights_remaining = 0;
         var insightsDropdown = $('#insightsDropdown');
@@ -417,7 +439,6 @@ $(document).ready(function () {
         }
         )
     }
-
 
     if ($('.slick-true')) {
         // Prevents us from calling init twice
@@ -488,5 +509,40 @@ $(document).ready(function () {
             });
             sameHeightChildren.height(tallestHeight);
         });
+    }
+
+    if (document.getElementsByClassName("accordion")) {
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    }
+
+   if (document.getElementsByClassName("leader-accordion")) {
+
+        var acc = document.getElementsByClassName("leader-accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
     }
 })

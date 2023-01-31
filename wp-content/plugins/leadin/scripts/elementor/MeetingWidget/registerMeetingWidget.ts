@@ -2,11 +2,15 @@ import ReactDOM from 'react-dom';
 import MeetingControlController from './MeetingControlController';
 import MeetingWidgetController from './MeetingWidgetController';
 
+export interface IMeetingAttributes {
+  url: string;
+}
+
 export default class registerMeetingsWidget {
-  widgetContainer: any;
-  controlContainer: any;
+  widgetContainer: Element;
+  controlContainer: Element;
   setValue: Function;
-  attributes: any;
+  attributes: IMeetingAttributes;
 
   constructor(controlContainer: any, widgetContainer: any, setValue: Function) {
     const attributes = widgetContainer.dataset.attributes

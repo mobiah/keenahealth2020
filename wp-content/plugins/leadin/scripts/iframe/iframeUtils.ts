@@ -3,6 +3,7 @@ import {
   backgroundIframeUrl,
   impactLink,
   iframeUrl,
+  pluginPath,
 } from '../constants/leadinConfig';
 
 function getIframeHeight() {
@@ -48,13 +49,52 @@ function createIframeElement(iframeSrc: string) {
   return iframe;
 }
 
+function createSpinnerImage() {
+  const img = document.createElement('img');
+  img.src = `${pluginPath}/public/assets/images/loading-dots.svg`;
+  img.id = 'hs-plugin-loader';
+  img.style.cssText = ` top: 50%;
+                        left: 50%;
+                        margin-left: -41px;
+                        margin-top: -37;
+                        display: block;
+                        position: absolute;
+                        z-index: 900;`;
+  return img;
+}
+
+function addIframeLoadEvent(
+  iframeContainer: HTMLElement,
+  img: HTMLElement,
+  iframe: HTMLIFrameElement
+) {
+  iframe.addEventListener(
+    'load',
+    () => {
+      if (img && document.getElementById(img.id)) {
+        img.remove();
+      }
+    },
+    true
+  );
+}
+
+function withLoadingSpinner(iframe: HTMLIFrameElement) {
+  const iframeContainer = document.createElement('div');
+  const img = createSpinnerImage();
+  iframeContainer.appendChild(img);
+  iframeContainer.appendChild(iframe);
+  addIframeLoadEvent(iframeContainer, img, iframe);
+  return iframeContainer;
+}
+
 export function createIframe() {
   const link = impactLink
     ? `${impactLink}?u=${encodeURIComponent(`${iframeUrl}`)}&trackConsent=0`
     : iframeUrl;
   const iframe = createIframeElement(link);
   initInterframe(iframe);
-  return iframe;
+  return withLoadingSpinner(iframe);
 }
 
 export function createBackgroundIframe() {

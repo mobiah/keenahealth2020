@@ -56,7 +56,7 @@
 
                     <div class="leader-quote col-12">
                         <blockquote>
-                        <hr class="small-divider">
+                            <hr class="small-divider">
                             <p>"<?php the_sub_field('quote'); ?>"</p>
                             <footer>
                                 <?php the_sub_field('name'); ?>
@@ -65,8 +65,9 @@
                     </div>
 
                 </div>
+                <!-- &nbsp;
                 <hr>
-                &nbsp;
+                &nbsp; -->
             </div>
             <?php
 				} else {
@@ -93,4 +94,3 @@
     </div>
     <?php binarym_block_ornament(); ?>
 </div><!-- .gallery -->
-

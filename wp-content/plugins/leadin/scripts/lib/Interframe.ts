@@ -20,6 +20,7 @@ import {
   leadinDisconnectPortal,
   setBusinessUnitId,
   getBusinessUnitId,
+  getBusinessUnits,
 } from '../api/wordpressApiClient';
 import { setLeadinUnAuthedNavigation } from '../utils/sideNav';
 import { gutenbergTriggerConnectCalendarRefresh } from '../gutenberg/MeetingsBlock/MeetingGutenbergInterframe';
@@ -42,6 +43,7 @@ const methods = {
   gutenbergTriggerConnectCalendarRefresh,
   setBusinessUnitId,
   getBusinessUnitId,
+  getBusinessUnits,
 };
 
 const UNAUTHORIZED = 'unauthorized';

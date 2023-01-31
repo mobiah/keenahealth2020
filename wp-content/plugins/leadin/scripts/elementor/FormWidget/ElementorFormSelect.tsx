@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { portalId } from '../../constants/leadinConfig';
 import ElementorBanner from '../Common/ElementorBanner';
-import { fetchForms } from '../../api/hubspotApiClient';
+import { fetchForms, IForm } from '../../api/hubspotApiClient';
 import UISpinner from '../../shared/UIComponents/UISpinner';
 import { __ } from '@wordpress/i18n';
 
@@ -12,7 +12,7 @@ interface FormOption {
 
 type Options = FormOption[];
 
-const mapForm = (form: any) => ({
+const mapForm = (form: IForm) => ({
   label: form.name,
   value: form.guid,
 });

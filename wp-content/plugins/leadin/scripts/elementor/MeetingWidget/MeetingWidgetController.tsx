@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { connectionStatus } from '../../constants/leadinConfig';
 import ErrorHandler from '../../shared/Common/ErrorHandler';
 import MeetingsEdit from '../../shared/Meeting/MeetingEdit';
+import { IMeetingAttributes } from './registerMeetingWidget';
 
 const ConnectionStatus = {
   Connected: 'Connected',
@@ -9,7 +10,7 @@ const ConnectionStatus = {
 };
 
 export default function MeetingWidgetController(
-  attributes: any,
+  attributes: IMeetingAttributes,
   setValue: Function
 ) {
   return () => {

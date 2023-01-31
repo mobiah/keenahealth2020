@@ -5,14 +5,9 @@ import AuthWrapper from '../Auth/AuthWrapper';
 import PreviewForm from './PreviewForm';
 import FormSelect from './FormSelect';
 import { monitorFormPreviewRender } from '../../api/hubspotPluginApi';
+import { IFormBlockProps } from '../../gutenberg/FormBlock/registerFormBlock';
 
-interface IFormEditProps {
-  attributes: {
-    formId: string;
-    formName: string;
-  };
-  setAttributes: Function;
-  isSelected: boolean;
+interface IFormEditProps extends IFormBlockProps {
   preview: boolean;
   origin: 'gutenberg' | 'elementor';
 }

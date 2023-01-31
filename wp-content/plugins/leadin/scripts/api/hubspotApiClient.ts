@@ -1,3 +1,4 @@
+import { IFormTypeDefinition } from '../constants/defaultFormOptions';
 import { makeProxyRequest } from './wordpressApiClient';
 
 const FORMS_PATH = `/forms/v2/forms`;
@@ -7,8 +8,15 @@ export interface IForm {
   name: string;
 }
 
+interface IFormSearchQueryParam {
+  offset: number;
+  limit: number;
+  formTypes: string[];
+  name__contains?: string;
+}
+
 export function fetchForms(searchQuery = '', offset = 0, limit = 10) {
-  const queryParams: { [key: string]: any } = {
+  const queryParams: IFormSearchQueryParam = {
     offset,
     limit,
     formTypes: ['HUBSPOT'],
@@ -32,6 +40,6 @@ export function fetchForms(searchQuery = '', offset = 0, limit = 10) {
   );
 }
 
-export function createForm(payload: any) {
+export function createForm(payload: IFormTypeDefinition) {
   return makeProxyRequest('post', FORMS_PATH, payload);
 }

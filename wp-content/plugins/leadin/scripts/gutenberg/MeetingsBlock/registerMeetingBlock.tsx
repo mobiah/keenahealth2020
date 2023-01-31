@@ -1,5 +1,5 @@
 import React from 'react';
-import { registerBlockType } from '@wordpress/blocks';
+import { BlockAttribute, registerBlockType } from '@wordpress/blocks';
 import CalendarIcon from '../Common/CalendarIcon';
 import { connectionStatus } from '../../constants/leadinConfig';
 import MeetingGutenbergPreview from './MeetingGutenbergPreview';
@@ -13,12 +13,24 @@ const ConnectionStatus = {
   NotConnected: 'NotConnected',
 };
 
+export interface IMeetingBlockAttributes {
+  attributes: {
+    url: string;
+    preview?: boolean;
+  };
+}
+
+export interface IMeetingBlockProps extends IMeetingBlockAttributes {
+  setAttributes: Function;
+  isSelected: boolean;
+}
+
 export default function registerMeetingBlock() {
-  const editComponent = (props: any) => {
+  const editComponent = (props: IMeetingBlockProps) => {
     if (props.attributes.preview) {
       return <MeetingGutenbergPreview />;
     } else if (connectionStatus === ConnectionStatus.Connected) {
-      return <MeetingEdit {...props} />;
+      return <MeetingEdit {...props} preview={true} origin="gutenberg" />;
     } else {
       return <ErrorHandler status={401} />;
     }
@@ -36,11 +48,11 @@ export default function registerMeetingBlock() {
       url: {
         type: 'string',
         default: '',
-      },
+      } as BlockAttribute<string>,
       preview: {
         type: 'boolean',
         default: false,
-      },
+      } as BlockAttribute<boolean>,
     },
     example: {
       attributes: {
@@ -48,6 +60,6 @@ export default function registerMeetingBlock() {
       },
     },
     edit: editComponent,
-    save: (props: any) => <MeetingSaveBlock {...props} />,
+    save: props => <MeetingSaveBlock {...props} />,
   });
 }

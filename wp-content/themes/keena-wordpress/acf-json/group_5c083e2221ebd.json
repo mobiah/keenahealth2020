@@ -572,6 +572,40 @@
                     "delay": 1
                 },
                 {
+                    "key": "field_63ccad8723696",
+                    "label": "Careers Gallery",
+                    "name": "careers_gallery",
+                    "aria-label": "",
+                    "type": "gallery",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        {
+                            "field": "field_5c083faf137b9",
+                            "operator": "==",
+                            "value": "careers"
+                        }
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min": "5",
+                    "max": "",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "insert": "append",
+                    "preview_size": "medium"
+                },
+                {
                     "key": "field_5c1a7cb8b4ea4",
                     "label": "Left Content",
                     "name": "left_content",
@@ -584,6 +618,13 @@
                                 "field": "field_5c083faf137b9",
                                 "operator": "==",
                                 "value": "left-right"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_5c083faf137b9",
+                                "operator": "==",
+                                "value": "careers"
                             }
                         ]
                     ],
@@ -611,6 +652,13 @@
                                 "field": "field_5c083faf137b9",
                                 "operator": "==",
                                 "value": "left-right"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_5c083faf137b9",
+                                "operator": "==",
+                                "value": "careers"
                             }
                         ]
                     ],

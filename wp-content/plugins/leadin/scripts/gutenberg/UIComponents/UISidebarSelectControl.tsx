@@ -4,13 +4,19 @@ import { SelectControl } from '@wordpress/components';
 import withMetaData from '../../utils/withMetaData';
 import { monitorSidebarMetaChange } from '../../api/hubspotPluginApi';
 
+interface IOption {
+  label: string;
+  value: string;
+  disabled?: boolean;
+}
+
 interface IUISidebarSelectControlProps {
   metaValue?: string;
   metaKey: string;
   setMetaValue?: Function;
-  options: any[];
+  options: IOption[];
   className: string;
-  label: any;
+  label: JSX.Element;
 }
 
 const UISidebarSelectControl = (props: IUISidebarSelectControlProps) => {

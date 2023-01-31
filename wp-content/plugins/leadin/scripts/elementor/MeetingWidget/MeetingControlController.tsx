@@ -3,6 +3,7 @@ import { connectionStatus } from '../../constants/leadinConfig';
 import ConnectPluginBanner from '../Common/ConnectPluginBanner';
 import ElementorMeetingSelect from './ElementorMeetingSelect';
 import MeetingsContextWrapper from '../../shared/Meeting/MeetingsContext';
+import { IMeetingAttributes } from './registerMeetingWidget';
 
 const ConnectionStatus = {
   Connected: 'Connected',
@@ -10,7 +11,7 @@ const ConnectionStatus = {
 };
 
 export default function MeetingControlController(
-  attributes: any,
+  attributes: IMeetingAttributes,
   setValue: Function
 ) {
   return () => {

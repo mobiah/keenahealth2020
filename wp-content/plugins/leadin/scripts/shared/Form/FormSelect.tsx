@@ -15,6 +15,7 @@ import LoadingBlock from '../Common/LoadingBlock';
 import { __ } from '@wordpress/i18n';
 import {
   DEFAULT_OPTIONS,
+  FormType,
   getFormDef,
   isDefaultForm,
 } from '../../constants/defaultFormOptions';
@@ -59,7 +60,7 @@ export default function FormSelect({
 
   const value = form ? mapForm(form) : null;
 
-  const handleLocalChange = (option: any) => {
+  const handleLocalChange = (option: { value: FormType }) => {
     if (isDefaultForm(option.value)) {
       setLoading(true);
       monitorFormCreatedFromTemplate(option.value, origin);
@@ -82,7 +83,7 @@ export default function FormSelect({
   ) : !formApiError ? (
     <FormSelector
       loadOptions={loadOptions}
-      onChange={(option: any) => handleLocalChange(option)}
+      onChange={(option: { value: FormType }) => handleLocalChange(option)}
       value={value}
     />
   ) : (

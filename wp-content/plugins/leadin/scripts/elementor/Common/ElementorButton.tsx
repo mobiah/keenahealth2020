@@ -10,7 +10,7 @@ const Container = styled.div`
 export default function ElementorButton({
   children,
   ...params
-}: React.PropsWithChildren<any>) {
+}: React.PropsWithChildren<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
   return (
     <Container className="elementor-button-wrapper">
       <button

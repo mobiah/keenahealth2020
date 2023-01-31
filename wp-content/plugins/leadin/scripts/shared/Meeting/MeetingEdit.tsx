@@ -1,13 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import { monitorMeetingPreviewRender } from '../../api/hubspotPluginApi';
+import { IMeetingBlockProps } from '../../gutenberg/MeetingsBlock/registerMeetingBlock';
 import MeetingController from './MeetingController';
 import MeetingsContextWrapper from './MeetingsContext';
 import PreviewMeeting from './PreviewMeeting';
 
-interface IMeetingEditProps {
-  attributes: { url: string };
-  isSelected: boolean;
-  setAttributes: Function;
+interface IMeetingEditProps extends IMeetingBlockProps {
   preview?: boolean;
   origin?: 'gutenberg' | 'elementor';
 }

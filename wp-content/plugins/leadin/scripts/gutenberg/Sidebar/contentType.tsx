@@ -23,7 +23,7 @@ export function registerHubspotSidebar() {
     </ContentTypeLabelStyle>
   );
 
-  const LeadinPluginSidebar = ({ postType }: { postType: any }) =>
+  const LeadinPluginSidebar = ({ postType }: { postType: string }) =>
     postType ? (
       <PluginSidebar
         name="leadin"

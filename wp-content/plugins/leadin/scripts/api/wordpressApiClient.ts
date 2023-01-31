@@ -125,3 +125,11 @@ export function setBusinessUnitId(businessUnitId: number) {
 export function getBusinessUnitId() {
   return makeRequest('get', '/business-unit');
 }
+
+export function getBusinessUnits() {
+  return makeProxyRequest(
+    'get',
+    '/integrations-proxy/v1/forms/business-units',
+    {}
+  );
+}

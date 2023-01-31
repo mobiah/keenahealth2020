@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="card-content">
                                     <p class="h3"> <?php echo $title;?></p>
-                                    <p class="ins-desc"><?php echo $trimmed;?></p>
+                                    <p class="ins-desc"><?php echo $excerpt;?></p>
                                     <p class="a-holder"></p>
                                     <a href="<?php echo $link;?>" target="_blank" class="btn">READ
                                         <?php echo $type;?></a>

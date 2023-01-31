@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { connectionStatus } from '../../constants/leadinConfig';
 import ConnectPluginBanner from '../Common/ConnectPluginBanner';
 import ElementorFormSelect from './ElementorFormSelect';
+import { IFormAttributes } from './registerFormWidget';
 
 const ConnectionStatus = {
   Connected: 'Connected',
@@ -9,7 +10,7 @@ const ConnectionStatus = {
 };
 
 export default function FormControlController(
-  attributes: any,
+  attributes: IFormAttributes,
   setValue: Function
 ) {
   return () => {

@@ -2,10 +2,16 @@ import ReactDOM from 'react-dom';
 import FormControlController from './FormControlController';
 import FormWidgetController from './FormWidgetController';
 
+export interface IFormAttributes {
+  formId: string;
+  formName: string;
+  portalId: string;
+}
+
 export default class registerFormWidget {
-  widgetContainer: any;
-  attributes: any;
-  controlContainer: any;
+  widgetContainer: Element;
+  attributes: IFormAttributes;
+  controlContainer: Element;
   setValue: Function;
 
   constructor(controlContainer: any, widgetContainer: any, setValue: Function) {

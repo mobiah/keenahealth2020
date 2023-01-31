@@ -1,16 +1,11 @@
 import React from 'react';
 import { RawHTML } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
-
-interface IMeetingSaveBlockProps {
-  attributes: {
-    url: string;
-  };
-}
+import { IMeetingBlockAttributes } from './registerMeetingBlock';
 
 export default function MeetingSaveBlock({
   attributes,
-}: IMeetingSaveBlockProps) {
+}: IMeetingBlockAttributes) {
   const { url } = attributes;
 
   if (url) {

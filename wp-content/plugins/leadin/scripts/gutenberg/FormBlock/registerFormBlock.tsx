@@ -1,5 +1,5 @@
 import React from 'react';
-import { registerBlockType } from '@wordpress/blocks';
+import { BlockAttribute, registerBlockType } from '@wordpress/blocks';
 import SprocketIcon from '../Common/SprocketIcon';
 import FormBlockSave from './FormBlockSave';
 import { connectionStatus } from '../../constants/leadinConfig';
@@ -13,12 +13,26 @@ const ConnectionStatus = {
   NotConnected: 'NotConnected',
 };
 
+export interface IFormBlockAttributes {
+  attributes: {
+    portalId: string;
+    formId: string;
+    preview?: boolean;
+    formName: string;
+  };
+}
+
+export interface IFormBlockProps extends IFormBlockAttributes {
+  setAttributes: Function;
+  isSelected: boolean;
+}
+
 export default function registerFormBlock() {
-  const editComponent = (props: any) => {
+  const editComponent = (props: IFormBlockProps) => {
     if (props.attributes.preview) {
       return <FormGutenbergPreview />;
     } else if (connectionStatus === ConnectionStatus.Connected) {
-      return <FormEdit {...props} />;
+      return <FormEdit {...props} origin="gutenberg" preview={true} />;
     } else {
       return <ErrorHandler status={401} />;
     }
@@ -33,17 +47,17 @@ export default function registerFormBlock() {
       portalId: {
         type: 'string',
         default: '',
-      },
+      } as BlockAttribute<string>,
       formId: {
         type: 'string',
-      },
+      } as BlockAttribute<string>,
       formName: {
         type: 'string',
-      },
+      } as BlockAttribute<string>,
       preview: {
         type: 'boolean',
         default: false,
-      },
+      } as BlockAttribute<boolean>,
     },
     example: {
       attributes: {
@@ -51,6 +65,6 @@ export default function registerFormBlock() {
       },
     },
     edit: editComponent,
-    save: (props: any) => <FormBlockSave {...props} />,
+    save: props => <FormBlockSave {...props} />,
   });
 }

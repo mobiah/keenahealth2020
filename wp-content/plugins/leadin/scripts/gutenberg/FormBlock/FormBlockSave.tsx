@@ -1,12 +1,9 @@
 import React from 'react';
 import { useBlockProps } from '@wordpress/block-editor';
 import { RawHTML } from '@wordpress/element';
+import { IFormBlockAttributes } from './registerFormBlock';
 
-export interface IFormSaveBlockProps {
-  attributes: { portalId: string; formId: string };
-}
-
-export default function FormSaveBlock({ attributes }: IFormSaveBlockProps) {
+export default function FormSaveBlock({ attributes }: IFormBlockAttributes) {
   const { portalId, formId } = attributes;
 
   if (portalId && formId) {

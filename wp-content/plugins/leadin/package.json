@@ -15,6 +15,7 @@
     "vendor/*",
     "changelog.txt",
     "leadin.php",
+    "uninstall.php",
     "phpunit.xml.dist",
     "license.txt",
     "readme.txt"

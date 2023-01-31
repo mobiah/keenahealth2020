@@ -32,7 +32,7 @@ export default function MeetingController({
     }
   }, [meetings, selectedMeeting, handleChange]);
 
-  const handleLocalChange = (option: any) => {
+  const handleLocalChange = (option: { value: string }) => {
     handleChange(option.value);
   };
 

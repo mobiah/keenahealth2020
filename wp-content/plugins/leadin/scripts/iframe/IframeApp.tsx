@@ -7,7 +7,7 @@ import { IframeErrorPage } from './IframeErrorPage';
 
 const IFRAME_DISPLAY_TIMEOUT = 5000;
 
-export const IframePortal = (props: any) => {
+export const IframePortal = (props: React.PropsWithChildren) => {
   const [iframeNotRendered, setIframeNotRendered] = useState(false);
 
   useEffect(() => {
