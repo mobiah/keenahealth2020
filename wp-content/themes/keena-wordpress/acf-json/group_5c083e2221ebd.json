@@ -851,11 +851,14 @@
                         "conversion_and_archival": "Conversion and Archival",
                         "data_analytics_and_management": "Data Analytics and Management",
                         "interfaces_and_interoperability": "Interfaces and Interoperability",
-                        "live_archive": "LiveArchive",
                         "patient_engagement": "Patient Engagement",
                         "population_health": "Population Health",
                         "system_and_business_automation": "System and Business Automation",
-                        "workflow_efficiency": "Workflow Efficiency"
+                        "workflow_efficiency": "Workflow Efficiency",
+                        "chart2pdf": "Chart2PDF",
+                        "ehr_barcode_reader": "EHR Barcode Reader",
+                        "intelefiler": "InteleFiler",
+                        "live_archive": "LiveArchive"
                     },
                     "default_value": false,
                     "allow_null": 0,
@@ -926,6 +929,41 @@
                     "layout": "vertical",
                     "return_format": "value",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_63da91797556e",
+                    "label": "Exclude",
+                    "name": "exclude",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5c083faf137b9",
+                                "operator": "==",
+                                "value": "pubs"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "brochure": "Brochure",
+                        "case_study": "Case Study",
+                        "white_paper": "White Paper",
+                        "sales_sheet": "Sales Sheet"
+                    },
+                    "default_value": [],
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "save_custom": 0
                 },
                 {
                     "key": "field_5c12d7b420c68",

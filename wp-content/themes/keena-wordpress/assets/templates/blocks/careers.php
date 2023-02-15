@@ -40,8 +40,6 @@
 				}
 				?>
 
-
-
                 <?php
 				$career_types = array( 'full-time-employment-opportunities', 'contractor-opportunities');
 
@@ -49,7 +47,18 @@
 				?>
                 <div class="column-<?php echo $ctype; ?>">
                     <h4 class="career-type-title basic-btn basic-green">
-                        <?php echo ucwords( str_replace('-', ' ', $ctype ) ); ?>
+                        <?php 
+						if ($ctype === 'full-time-employment-opportunities') {
+							$stripped = ucwords( str_replace('-', ' ', $ctype ) );
+							// echo $stripped.'<br/>';
+							$format_full_time = ucwords( str_replace('opportunities', 'openings', $stripped ) );
+							echo 'full time openings';
+
+						} else {
+							echo ucwords( str_replace('-', ' ', $ctype ) ); 
+						}
+						
+						?>
                     </h4>
 
                     <?php
@@ -88,7 +97,7 @@
 								endwhile;
 								wp_reset_postdata();
 							else:
-								echo '<p>Sorry, there are no openings at this time. Please check back again later.</p>';
+								echo '<p style="font-style:italic;">Sorry, there are no openings at this time.<br/>Please check back again later.</p>';
 							endif;
 						?>
                 </div>
@@ -99,13 +108,11 @@
 				?>
             </div>
 
-
-
             <?php
 
-$images = get_sub_field('careers_gallery');
-$size = 'full'; // (thumbnail, medium, large, full or custom size)
-if( $images ): ?>
+			$images = get_sub_field('careers_gallery');
+			$size = 'full'; // (thumbnail, medium, large, full or custom size)
+			if( $images ): ?>
 
             <div class="col-md">
                 <div id="careers-collage">
@@ -117,7 +124,6 @@ if( $images ): ?>
                     </div>
 
                     <?php endforeach; ?>
-                    </ul>
                 </div>
 
 

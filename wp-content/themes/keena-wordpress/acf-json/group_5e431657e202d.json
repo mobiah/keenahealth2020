@@ -15,8 +15,8 @@
                 "id": ""
             },
             "choices": {
-                "full-time-employment-opportunities": "Full Time Employment Opportunities",
-                "contractor-opportunities": "Contractor Opportunities"
+             "full-time-employment-opportunities": "Full Time Employment Opportunities",
+              "contractor-opportunities": "Contractor Opportunities"
             },
             "default_value": [],
             "allow_null": 0,

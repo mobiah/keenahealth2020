@@ -1,0 +1,1 @@
+positionForPages[19]={"page":19,"positions":[{"word":"KEENA","left":0.965287,"top":0.583452,"width":0.008187,"height":0.065516},{"word":"HEALTH","left":0.965287,"top":0.657651,"width":0.008187,"height":0.074751},{"word":"PAGE","left":0.965988,"top":0.781333,"width":0.008409,"height":0.048216},{"word":"17","left":0.966094,"top":0.844010,"width":0.008187,"height":0.016762}]};

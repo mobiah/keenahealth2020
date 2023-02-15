@@ -17,12 +17,12 @@
 				$email = get_sub_field('email');
 
 				if ( !empty( $email ) )
-					$leader_contact_details .= '<a href="mailto:'.$email.'" target="_blank">'. $email .'</a><br>';
+					$leader_contact_details .= '<a href="mailto:'.$email.'">'. $email .'</a><br>';
 
 				$linkedin_url = get_sub_field('linkedin_url');
 
 				if ( !empty( $linkedin_url ) )
-					$leader_contact_details .= '<a href=" '. $linkedin_url .'" target="_blank"><i class="fab fa-linkedin-in"> </i><span>/</span>' . $leader_id . '</a>';
+					$leader_contact_details .= '<a href=" '. $linkedin_url .'"><i class="fab fa-linkedin-in"> </i><span>/</span>' . $leader_id . '</a>';
 
 				
 
@@ -56,7 +56,7 @@
 
                     <div class="leader-quote col-12">
                         <blockquote>
-                            <hr class="small-divider">
+                        <hr class="small-divider">
                             <p>"<?php the_sub_field('quote'); ?>"</p>
                             <footer>
                                 <?php the_sub_field('name'); ?>
@@ -65,9 +65,7 @@
                     </div>
 
                 </div>
-                <!-- &nbsp;
-                <hr>
-                &nbsp; -->
+                &nbsp;
             </div>
             <?php
 				} else {
@@ -94,3 +92,4 @@
     </div>
     <?php binarym_block_ornament(); ?>
 </div><!-- .gallery -->
+
