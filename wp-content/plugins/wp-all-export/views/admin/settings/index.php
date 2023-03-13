@@ -211,4 +211,6 @@ if(!defined('ABSPATH')) {
 
     </div>
 </div>
-<a href="http://soflyy.com/" target="_blank" class="wpallexport-created-by"><?php esc_html_e('Created by', 'wp_all_export_plugin'); ?> <span></span></a>
+<div class="wpallexport-negative-margin fifteen">
+	<?php echo apply_filters('wpallexport_footer', ''); ?>
+</div>

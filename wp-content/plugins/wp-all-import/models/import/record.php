@@ -380,7 +380,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
                                             foreach ( $missingPostRecords as $k => $missingPostRecord ) {
                                                 $to_delete = true;
                                                 // Instead of deletion, set Custom Field.
-                                                if ($this->options['is_update_missing_cf']){
+                                                if ($this->options['delete_missing_action'] == 'keep' && $this->options['is_update_missing_cf']) {
                                                     switch ($this->options['custom_type']){
                                                         case 'import_users':
                                                             update_user_meta( $missingPostRecord['post_id'], $this->options['update_missing_cf_name'], $this->options['update_missing_cf_value'] );
@@ -409,7 +409,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 
                                                 // Instead of deletion, change post status to Draft
                                                 $final_post_type = get_post_type($missingPostRecord['post_id']);
-                                                if ($this->options['set_missing_to_draft']){
+                                                if ($this->options['delete_missing_action'] == 'keep' && $this->options['is_change_post_status_of_removed']){
                                                     if ($final_post_type != 'product_variation' and 'draft' != get_post_status($missingPostRecord['post_id'])){
                                                         $this->wpdb->update( $this->wpdb->posts, array('post_status' => 'draft'), array('ID' => $missingPostRecord['post_id']) );
                                                         $this->recount_terms($missingPostRecord['post_id'], $final_post_type);
@@ -417,7 +417,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
                                                     $to_delete = false;
                                                 }
 
-                                                if (!empty($this->options['missing_records_stock_status']) && class_exists('PMWI_Plugin') && $this->options['custom_type'] == "product") {
+                                                if ($this->options['delete_missing_action'] == 'keep' && !empty($this->options['missing_records_stock_status']) && class_exists('PMWI_Plugin') && $this->options['custom_type'] == "product") {
                                                     update_post_meta( $missingPostRecord['post_id'], '_stock_status', 'outofstock' );
                                                     update_post_meta( $missingPostRecord['post_id'], '_stock', 0 );
 
@@ -434,11 +434,11 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 
                                                 // Delete posts that are no longer present in your file
                                                 if ($to_delete) {
-                                                    if (!in_array($this->options['custom_type'], array("import_users", "taxonomies", "shop_customer"))) {
+                                                    if (!$this->options['delete_missing_action'] != 'keep' && in_array($this->options['custom_type'], array("import_users", "taxonomies", "shop_customer"))) {
                                                         // Remove attachments
-                                                        empty($this->options['is_keep_attachments']) and wp_delete_attachments($missingPostRecord['post_id'], true, 'files');
+                                                        !empty($this->options['is_delete_attachments']) and wp_delete_attachments($missingPostRecord['post_id'], true, 'files');
                                                         // Remove images
-                                                        empty($this->options['is_keep_imgs']) and wp_delete_attachments($missingPostRecord['post_id'], true, 'images');
+                                                        !empty($this->options['is_delete_imgs']) and wp_delete_attachments($missingPostRecord['post_id'], true, 'images');
                                                         // Clear post's relationships
                                                         wp_delete_object_term_relationships($missingPostRecord['post_id'], get_object_taxonomies('' != $this->options['custom_type'] ? $this->options['custom_type'] : 'post'));
                                                     }
@@ -3706,7 +3706,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 							$to_delete = true;
 
 							// Instead of deletion, set Custom Field
-							if ($this->options['is_update_missing_cf']){
+							if ($this->options['delete_missing_action'] == 'keep' && $this->options['is_update_missing_cf']){
                                 switch ($this->options['custom_type']){
                                     case 'import_users':
                                         update_user_meta( $missingPostRecord['post_id'], $this->options['update_missing_cf_name'], $this->options['update_missing_cf_value'] );
@@ -3727,7 +3727,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 							}
 
 							// Instead of deletion, change post status to Draft
-							if ($this->options['set_missing_to_draft']){
+							if ($this->options['delete_missing_action'] == 'keep' && $this->options['is_change_post_status_of_removed']){
 								if ($final_post_type = get_post_type($missingPostRecord['post_id']) and $final_post_type != 'product_variation' and 'draft' != get_post_status($missingPostRecord['post_id']))
 								{
 									$this->wpdb->update( $this->wpdb->posts, array('post_status' => 'draft'), array('ID' => $missingPostRecord['post_id']) );
@@ -3737,7 +3737,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 								$to_delete = false;
 							}
 
-                            if (!empty($this->options['missing_records_stock_status']) && class_exists('PMWI_Plugin') && $this->options['custom_type'] == "product") {
+                            if ($this->options['delete_missing_action'] == 'keep' && !empty($this->options['missing_records_stock_status']) && class_exists('PMWI_Plugin') && $this->options['custom_type'] == "product") {
                                 update_post_meta( $missingPostRecord['post_id'], '_stock_status', 'outofstock' );
                                 update_post_meta( $missingPostRecord['post_id'], '_stock', 0 );
 
@@ -3753,12 +3753,12 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 							$to_delete = apply_filters('wp_all_import_is_post_to_delete', $to_delete, $missingPostRecord['post_id'], $this);
 
 							if ($to_delete) {
-                                if ( ! in_array($this->options['custom_type'], array("import_users", "taxonomies", "shop_customer")) ){
+                                if ($this->options['delete_missing_action'] == 'keep' &&  ! in_array($this->options['custom_type'], array("import_users", "taxonomies", "shop_customer")) ){
                                     do_action('pmxi_before_delete_post', $missingPostRecord['post_id'], $this);
                                     // Remove attachments
-                                    empty($this->options['is_keep_attachments']) and wp_delete_attachments($missingPostRecord['post_id'], true, 'files');
+                                    !empty($this->options['is_delete_attachments']) and wp_delete_attachments($missingPostRecord['post_id'], true, 'files');
                                     // Remove images
-                                    empty($this->options['is_keep_imgs']) and wp_delete_attachments($missingPostRecord['post_id'], true, 'images');
+                                    !empty($this->options['is_delete_imgs']) and wp_delete_attachments($missingPostRecord['post_id'], true, 'images');
                                     // Clear post's relationships
                                     wp_delete_object_term_relationships($missingPostRecord['post_id'], get_object_taxonomies('' != $this->options['custom_type'] ? $this->options['custom_type'] : 'post'));
                                 }
@@ -4026,14 +4026,14 @@ class PMXI_Import_Record extends PMXI_Model_Record {
             if ( ! in_array($this->options['custom_type'], array('import_users', 'taxonomies', 'shop_customer', 'comments', 'woo_reviews')) ){
                 do_action('pmxi_before_delete_post', $id, $this);
                 // Remove attachments.
-                if ($is_delete_attachments == 'yes' or $is_delete_attachments == 'auto' and empty($this->options['is_keep_attachments'])) {
+                if ($is_delete_attachments == 'yes' or $is_delete_attachments == 'auto' and !empty($this->options['is_delete_attachments'])) {
                     wp_delete_attachments($id, true, 'files');
                 }
                 else {
                     wp_delete_attachments($id, false, 'files');
                 }
                 // Remove images.
-                if ($is_deleted_images == 'yes' or $is_deleted_images == 'auto' and empty($this->options['is_keep_imgs'])) {
+                if ($is_deleted_images == 'yes' or $is_deleted_images == 'auto' and !empty($this->options['is_delete_imgs'])) {
                     wp_delete_attachments($id, true, 'images');
                 }
                 else {

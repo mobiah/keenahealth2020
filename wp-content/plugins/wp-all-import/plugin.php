@@ -3,7 +3,7 @@
 Plugin Name: WP All Import
 Plugin URI: http://www.wpallimport.com/wordpress-xml-csv-import/?utm_source=import-plugin-free&utm_medium=wp-plugins-page&utm_campaign=upgrade-to-pro
 Description: The most powerful solution for importing XML and CSV files to WordPress. Create Posts and Pages with content from any XML or CSV file. A paid upgrade to WP All Import Pro is available for support and additional features.
-Version: 3.7.1
+Version: 3.7.2
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ define('WP_ALL_IMPORT_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('WP_ALL_IMPORT_PREFIX', 'pmxi_');
 
-define('PMXI_VERSION', '3.7.1');
+define('PMXI_VERSION', '3.7.2');
 
 define('PMXI_EDITION', 'free');
 
@@ -544,25 +544,26 @@ final class PMXI_Plugin {
 	}
 
 	public function ver_4x_transition_fix(&$options, $version){
-		if ( version_compare($version, '4.0.5') < 0  ){
-			if ( ! empty($options['tax_hierarchical_logic']) and is_array($options['tax_hierarchical_logic']) ){
-				foreach ($options['tax_hierarchical_logic'] as $tx => $type) {
-					switch ($type){
-						case 'entire':
-							$options['tax_hierarchical_logic_entire'][$tx] = 1;
-							break;
-						case 'manual':
-							$options['tax_hierarchical_logic_manual'][$tx] = 1;
-							break;
-						default:
-
-							break;
-					}
-				}
-				unset($options['tax_hierarchical_logic']);
-			}
-		}
-
+        if ( version_compare($version, '3.7.2') < 0 ) {
+            $options['delete_missing_logic'] = 'import';
+            $options['is_send_removed_to_trash'] = 0;
+            $options['status_of_removed_products'] = 'outofstock';
+            if (empty($options['is_delete_missing']) || (!empty($options['is_update_missing_cf']) || !empty($options['set_missing_to_draft']) || !empty($options['missing_records_stock_status']))) {
+                $options['delete_missing_action'] = 'keep';
+                if ($options['set_missing_to_draft']) {
+                    $options['is_change_post_status_of_removed'] = 1;
+                    $options['status_of_removed'] = 'draft';
+                }
+            } else {
+                $options['delete_missing_action'] = 'remove';
+            }
+            // Set default option if no other options selected.
+            if (empty($options['is_update_missing_cf']) && empty($options['is_change_post_status_of_removed']) && empty($options['missing_records_stock_status'])) {
+                $options['is_send_removed_to_trash'] = 1;
+            }
+            $options['is_delete_attachments'] = !$options['is_keep_attachments'];
+            $options['is_delete_imgs'] = !$options['is_keep_imgs'];
+        }
 	}
 
 	/**
@@ -1179,10 +1180,16 @@ final class PMXI_Plugin {
 				'create_new_records' => 1,
 				'is_selective_hashing' => 0,
 				'is_delete_missing' => 0,
-				'set_missing_to_draft' => 0,
-				'is_update_missing_cf' => 0,
-				'update_missing_cf_name' => '',
-				'update_missing_cf_value' => '',
+                'delete_missing_logic' => 'import',
+                'delete_missing_action' => 'keep',
+                'is_send_removed_to_trash' => 0,
+                'is_change_post_status_of_removed' => 1,
+                'status_of_removed' => 'draft',
+                'status_of_removed_products' => 'outofstock',
+                'set_missing_to_draft' => 0,
+                'is_update_missing_cf' => 0,
+                'update_missing_cf_name' => [],
+                'update_missing_cf_value' => [],
 
 				'is_keep_former_posts' => 'no',
 				'is_update_status' => 1,
@@ -1206,8 +1213,10 @@ final class PMXI_Plugin {
 				'is_update_dates' => 1,
 				'is_update_menu_order' => 1,
 				'is_update_parent' => 1,
-				'is_keep_attachments' => 0,
-				'is_keep_imgs' => 0,
+                'is_keep_attachments' => 0,
+                'is_delete_attachments' => 0,
+                'is_keep_imgs' => 0,
+                'is_delete_imgs' => 0,
 				'do_not_remove_images' => 1,
 
 				'is_update_custom_fields' => 1,

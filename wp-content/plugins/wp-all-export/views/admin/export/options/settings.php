@@ -152,7 +152,7 @@ if(!defined('ABSPATH')) {
                             <div class="input" style="margin:5px 0px;">
                                 <input type="hidden" name="allow_client_mode" value="0"/>
                                 <input type="checkbox" id="allow_client_mode" name="allow_client_mode"
-                                       value="1" <?php echo (isset($post['allow_client_mode']) && $post['allow_client_mode']) ? 'checked="checked"' : '' ?> />
+                                       value="1" />
                                 <label for="allow_client_mode"><?php esc_html_e('Allow non-admins to run this export in Client Mode', 'wp_all_export_plugin') ?></label>
                                 <span>
                                     <a href="#help" class="wpallexport-help" style="position: relative; top: 0;" title="<?php esc_html_e('When enabled, users with access to Client Mode will be able to run this export and download the export file. Go to All Export > Settings to give users access to Client Mode. <br><br><strong>Upgrade to the Pro edition of WP All Export to use this option.</strong>'); ?>">?</a>

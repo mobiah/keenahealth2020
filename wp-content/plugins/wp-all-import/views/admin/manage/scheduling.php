@@ -59,4 +59,6 @@
 
 <?php endif; ?>
 
-<a href="http://soflyy.com/" target="_blank" class="wpallimport-created-by"><?php _e('Created by', 'wp_all_import_plugin'); ?> <span></span></a>
+<div class="wpallimport-display-columns wpallimport-margin-top-forty">
+	<?php echo apply_filters('wpallimport_footer', ''); ?>
+</div>

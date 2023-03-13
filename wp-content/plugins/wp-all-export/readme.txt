@@ -2,7 +2,7 @@
 Contributors: soflyy, wpallimport
 Requires at least: 5.0
 Tested up to: 6.1
-Stable tag: 1.3.8
+Stable tag: 1.3.9
 Tags: export, wordpress csv export, wordpress xml export, export woocommerce, migrate, export csv from wordpress, export xml from wordpress, advanced xml export, advanced csv export, export data, bulk csv export, export custom post type, export woocommerce products, export woocommerce orders, migrate woocommerce, csv export, export csv, xml export, export xml, csv exporter, datafeed
 
 Easily export any data from WordPress. Drag & drop to create a completely custom spreadsheet, CSV, or XML file.
@@ -86,7 +86,16 @@ If you want to set up a WordPress XML export all you need to do is select 'XML' 
 [Export WordPress Users to CSV/XML](https://wordpress.org/plugins/export-wp-users-xml-csv/)
 
 = Related Tutorials =
-[How to Export WooCommerce Products to Google Merchant Center](https://www.wpallimport.com/documentation/how-to-export-woocommerce-products-to-google-merchant-center/)
+[How to Export WooCommerce Products to Google Merchant Center (Google Shopping)](https://www.wpallimport.com/documentation/how-to-export-woocommerce-products-to-google-merchant-center/)
+[How to Export Gravity Forms Entries](https://www.wpallimport.com/documentation/how-to-export-gravity-form-entries-to-csv-or-xml/)
+[Export Toolset Types to CSV, XML, or Excel](https://www.wpallimport.com/toolset-types-export-csv-xml/)
+[How to Export WooCommerce Variable Products](https://www.wpallimport.com/documentation/how-to-export-woocommerce-variable-products/)
+[How to Export Blogs, Articles, Posts, Standard Post Data, Permalinks, Excerpts, Captions, Menus, Subscriptions, and Other Details From Your Websites](https://www.wpallimport.com/documentation/export-wordpress-posts/)
+[How To Export WordPress Comments](https://www.wpallimport.com/documentation/export-wordpress-comments-csv-xml/)
+[How To Export WooCommerce Coupons](https://www.wpallimport.com/documentation/how-to-export-woocommerce-coupons-to-csv-or-xml/)
+[How To Export WooCommerce Reviews](https://www.wpallimport.com/documentation/how-to-export-woocommerce-reviews-to-csv-or-xml/)
+[How to Schedule Your Exports to Run Automatically](https://www.wpallimport.com/documentation/how-to-schedule-wordpress-exports/)
+[How to Migrate WooCommerce and WordPress From One Host to Another](https://www.wpallimport.com/documentation/how-to-migrate-woocommerce-and-wordpress-data/)
 
 == Premium Support ==
 Upgrade to the Pro edition of WP All Export for premium support.
@@ -101,6 +110,11 @@ Either: -
 * Unzip wp-all-export.zip and upload the contents to /wp-content/plugins/, and then activate the plugin from the Plugins page in WordPress
 
 == Changelog ==
+
+= 1.3.9 =
+* improvement: remove deprecated jQuery functions
+* bug fix: resolve various PHP notices and warnings
+* bug fix: error on Step 1 when 'Disable syntax highlighting when editing code' User option is enabled
 
 = 1.3.8 =
 * improvement: only contact Scheduling service if a Scheduling license is set

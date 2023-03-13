@@ -107,78 +107,17 @@
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>',
 		) );
+
+		register_sidebar( array(
+			'name'          => 'Testimonial Insight',
+			'id'            => 'sidebar_testimonial_insight',
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		) );
 		
-		register_sidebar( array(
-			'name'          => 'Sidebar - ASPubs',
-			'id'            => 'sidebar_widget_area_3',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );
-
-		register_sidebar( array(
-			'name'          => 'Sidebar - CAPubs',
-			'id'            => 'sidebar_widget_area_4',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );
-
-		register_sidebar( array(
-			'name'          => 'Sidebar - DAPubs',
-			'id'            => 'sidebar_widget_area_5',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );
-
-		register_sidebar( array(
-			'name'          => 'Sidebar - IIPubs',
-			'id'            => 'sidebar_widget_area_6',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );
-
-		register_sidebar( array(
-			'name'          => 'Sidebar - PEPubs',
-			'id'            => 'sidebar_widget_area_7',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );
-
-		register_sidebar( array(
-			'name'          => 'Sidebar - PHPubs',
-			'id'            => 'sidebar_widget_area_8',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );
-
-		register_sidebar( array(
-			'name'          => 'Sidebar - SBPubs',
-			'id'            => 'sidebar_widget_area_9',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );
-
-		register_sidebar( array(
-			'name'          => 'Sidebar - WEPubs',
-			'id'            => 'sidebar_widget_area_10',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );
+		
 	} );
 
 	// https://blog.ripstech.com/2018/wordpress-file-delete-to-code-execution/
@@ -268,7 +207,7 @@ function insights_post_type() {
 			// Features this CPT supports in Post Editor
 			'supports'            => array( 'title', 'tags', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'page-attributes', 'post-formats'),
 			// You can associate this CPT with a taxonomy or custom taxonomy. 
-			'taxonomies'          => array( 'groups', 'genres', 'post_tag'),
+			'taxonomies'          => array(  'groups', 'post_tag', 'category'),
 			/* A hierarchical CPT is like Pages and can have
 			* Parent and child items. A non-hierarchical CPT
 			* is like Posts.
@@ -304,38 +243,38 @@ function insights_post_type() {
 
 	//hook into the init action and call create_book_taxonomies when it fires
   
-add_action( 'init', 'create_groups_hierarchical_taxonomy', 0 );
+// add_action( 'init', 'create_groups_hierarchical_taxonomy', 0 );
   
 //create a custom taxonomy name it groups for your posts
   
-function create_groups_hierarchical_taxonomy() {
+// function create_groups_hierarchical_taxonomy() {
   
-// Add new taxonomy, make it hierarchical like categories
-//first do the translations part for GUI
+// // Add new taxonomy, make it hierarchical like categories
+// //first do the translations part for GUI
   
-  $labels = array(
-    'name' => _x( 'Groups', 'taxonomy general name' ),
-    'singular_name' => _x( 'Group', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Groups' ),
-    'all_items' => __( 'All Groups' ),
-    'parent_item' => __( 'Parent Group' ),
-    'parent_item_colon' => __( 'Parent Group:' ),
-    'edit_item' => __( 'Edit Group' ), 
-    'update_item' => __( 'Update Group' ),
-    'add_new_item' => __( 'Add New Group' ),
-    'new_item_name' => __( 'New Group Name' ),
-    'menu_name' => __( 'Groups' ),
-  );    
+//   $labels = array(
+//     'name' => _x( 'Groups', 'taxonomy general name' ),
+//     'singular_name' => _x( 'Group', 'taxonomy singular name' ),
+//     'search_items' =>  __( 'Search Groups' ),
+//     'all_items' => __( 'All Groups' ),
+//     'parent_item' => __( 'Parent Group' ),
+//     'parent_item_colon' => __( 'Parent Group:' ),
+//     'edit_item' => __( 'Edit Group' ), 
+//     'update_item' => __( 'Update Group' ),
+//     'add_new_item' => __( 'Add New Group' ),
+//     'new_item_name' => __( 'New Group Name' ),
+//     'menu_name' => __( 'Groups' ),
+//   );    
   
-// Now register the taxonomy
-  register_taxonomy('groups',array('insights'), array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'show_in_rest' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'group' ),
-  ));
+// // Now register the taxonomy
+//   register_taxonomy('groups',array('insights'), array(
+//     'hierarchical' => true,
+//     'labels' => $labels,
+//     'show_ui' => true,
+//     'show_in_rest' => true,
+//     'show_admin_column' => true,
+//     'query_var' => true,
+//     'rewrite' => array( 'slug' => 'group' ),
+//   ));
   
-}
+// }

@@ -4569,3 +4569,60 @@ input label {
     80% { -o-transform: translate(3px); }
     100% { -o-origin-transform: translate(0px); }
 }
+
+/*
+    New footer styles.
+ */
+.wpallexport-plugin .wpallexport-cta-text-link {
+    display: flex;
+    justify-content: right;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-size: 13px;
+}
+
+.wpallexport-plugin .wpallexport-negative-margin .wpallexport-cta-text-link {
+    margin-top: -45px;
+}
+
+.wpallexport-plugin .wpallexport-negative-margin.sixty .wpallexport-cta-text-link {
+    margin-top: -60px;
+}
+
+.wpallexport-plugin .wpallexport-cta-text-link img {
+    padding-top: 14px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    height: 15px;
+}
+
+.wpallexport-plugin .wpallexport-footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+}
+
+.wpallexport-plugin .wpallexport-negative-margin.sixty .wpallexport-footer {
+    margin-top: -60px;
+}
+
+.wpallexport-plugin .wpallexport-negative-margin.fifteen .wpallexport-footer {
+    margin-top: -15px;
+}
+
+.wpallexport-plugin .wpallexport-display-columns .wpallexport-footer div {
+    width: 33%;
+}
+
+.wpallexport-plugin .wpallexport-display-columns .wpallexport-footer{
+    flex-direction: row;
+}
+
+.wpallexport-plugin .wpallexport-display-columns .wpallexport-footer .wpallexport-soflyy {
+    margin-bottom: 15px;
+}
+
+.wpallexport-plugin .wpallexport-margin-top-forty .wpallexport-footer {
+    margin-top: 40px;
+}

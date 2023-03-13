@@ -38,8 +38,28 @@
                     "mime_types": ""
                 },
                 {
+                    "key": "field_640e76cc5f216",
+                    "label": "Benefits",
+                    "name": "benefits",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "delay": 1
+                },
+                {
                     "key": "field_63e1320b9a9ae",
-                    "label": "Insight Link",
+                    "label": "Alternate Media",
                     "name": "insight_link",
                     "aria-label": "",
                     "type": "url",
@@ -69,26 +89,24 @@
                     },
                     "choices": {
                         "advisory_services": "Advisory Services",
-                        "barcode_reader": "Barcode Reader",
-                        "barcode_reader_altera": "Barcode Reader Altera",
-                        "barcode_reader_nextgen": "Barcode Reader NextGen",
+                        "ehr_barcode_reader": "EHR Barcode Reader",
                         "chart2pdf": "Chart2PDF",
-                        "clinical_automation": "Clinical Automation",
-                        "conversions": "Conversions",
-                        "data_analytics_and_management": "Data Analytics and Management",
+                        "conversion_and_archival": "Conversion and Archival",
+                        "data_management_and_analytics": "Data Management and Analytics",
                         "intelefiler": "InteleFiler",
-                        "interfaces": "Interfaces",
-                        "interoperability": "Interoperability",
+                        "interfaces_and_interoperability": "Interfaces and Interoperability",
                         "livearchive": "LiveArchive",
                         "patient_engagement": "Patient Engagement",
-                        "population_health": "Population Health"
+                        "population_health": "Population Health",
+                        "system_and_business_automation": "System and Business Automation",
+                        "workflow_efficiency": "Workflow Efficiency"
                     },
                     "allow_null": 0,
-                    "other_choice": 0,
+                    "other_choice": 1,
                     "default_value": "",
                     "layout": "vertical",
                     "return_format": "value",
-                    "save_other_choice": 0
+                    "save_other_choice": 1
                 }
             ]
         }

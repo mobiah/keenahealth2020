@@ -22,47 +22,6 @@
 	<a href="#help" class="wpallimport-help" title="<?php _e('New posts will only be created when ID column is present and value in ID column is unique.', 'wp_all_import_plugin') ?>" style="top: -1px;">?</a>
 	<?php endif; ?>
 </div>
-<div class="switcher-target-auto_matching">
-	<div class="input">
-		<input type="hidden" name="is_delete_missing" value="0" />
-		<input type="checkbox" id="is_delete_missing" name="is_delete_missing" value="1" <?php echo $post['is_delete_missing'] ? 'checked="checked"': '' ?> class="switcher" <?php if ( "new" != $post['wizard_type']): ?>disabled="disabled"<?php endif; ?>/>
-		<label for="is_delete_missing" <?php if ( "new" != $post['wizard_type']): ?>style="color:#ccc;"<?php endif; ?>><?php printf(__('Delete %s that are no longer present in your file', 'wp_all_import_plugin'), esc_attr($cpt_name)) ?></label>
-		<?php if ( "new" != $post['wizard_type']): ?>
-		<a href="#help" class="wpallimport-help" title="<?php _e('Records removed from the import file can only be deleted when importing into New Items. This feature cannot be enabled when importing into Existing Items.', 'wp_all_import_plugin') ?>" style="position:relative; top: -1px;">?</a>
-		<?php endif; ?>
-	</div>
-	<div class="switcher-target-is_delete_missing" style="padding-left:17px;">
-		<div class="input">
-			<input type="hidden" name="is_keep_attachments" value="0" />
-			<input type="checkbox" id="is_keep_attachments" name="is_keep_attachments" value="1" <?php echo $post['is_keep_attachments'] ? 'checked="checked"': '' ?> <?php if ( "new" != $post['wizard_type']): ?>disabled="disabled"<?php endif; ?>/>
-			<label for="is_keep_attachments"><?php _e('Do not remove attachments', 'wp_all_import_plugin') ?></label>
-		</div>
-		<div class="input">
-			<input type="hidden" name="is_keep_imgs" value="0" />
-			<input type="checkbox" id="is_keep_imgs" name="is_keep_imgs" value="1" <?php echo $post['is_keep_imgs'] ? 'checked="checked"': '' ?> <?php if ( "new" != $post['wizard_type']): ?>disabled="disabled"<?php endif; ?>/>
-			<label for="is_keep_imgs"><?php _e('Do not remove images', 'wp_all_import_plugin') ?></label>
-		</div>
-		<div class="input">
-			<input type="hidden" name="is_update_missing_cf" value="0" />
-			<input type="checkbox" id="is_update_missing_cf" name="is_update_missing_cf" value="1" <?php echo $post['is_update_missing_cf'] ? 'checked="checked"': '' ?> class="switcher" <?php if ( "new" != $post['wizard_type']): ?>disabled="disabled"<?php endif; ?>/>
-			<label for="is_update_missing_cf"><?php _e('Instead of deletion, set Custom Field', 'wp_all_import_plugin') ?></label>
-			<div class="switcher-target-is_update_missing_cf" style="padding-left:17px;">
-				<div class="input">
-					<?php _e('Name', 'wp_all_import_plugin') ?>
-					<input type="text" name="update_missing_cf_name" value="<?php echo esc_attr($post['update_missing_cf_name']) ?>" />
-					<?php _e('Value', 'wp_all_import_plugin') ?>
-					<input type="text" name="update_missing_cf_value" value="<?php echo esc_attr($post['update_missing_cf_value']) ?>" />
-				</div>
-			</div>
-		</div>
-		<div class="input">
-			<input type="hidden" name="set_missing_to_draft" value="0" />
-			<input type="checkbox" id="set_missing_to_draft" name="set_missing_to_draft" value="1" <?php echo $post['set_missing_to_draft'] ? 'checked="checked"': '' ?> <?php if ( "new" != $post['wizard_type']): ?>disabled="disabled"<?php endif; ?>/>
-			<label for="set_missing_to_draft"><?php _e('Instead of deletion, change post status to Draft', 'wp_all_import_plugin') ?></label>
-		</div>
-        <?php do_action('wp_all_import_delete_missing_options', $post_type, $post); ?>
-	</div>
-</div>
 <div class="input">
 	<input type="hidden" id="is_keep_former_posts" name="is_keep_former_posts" value="yes" />
 	<input type="checkbox" id="is_not_keep_former_posts" name="is_keep_former_posts" value="no" <?php echo "yes" != $post['is_keep_former_posts'] ? 'checked="checked"': '' ?> class="switcher" />
@@ -275,4 +234,7 @@
 			?>
 		</div>
 	</div>
+</div>
+<div class="switcher-target-auto_matching">
+    <?php include( '_delete_missing_options.php' ); ?>
 </div>

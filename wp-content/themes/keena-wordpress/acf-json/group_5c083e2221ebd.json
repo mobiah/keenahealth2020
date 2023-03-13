@@ -76,6 +76,7 @@
                         "gallery": "Gallery",
                         "gallery-stats": "Stats Gallery",
                         "testimonial": "Testimonial",
+                        "testimonial-insight": "Testimonial Insight",
                         "testimonial-no-image": "Testimonial No Image",
                         "leaders": "Leadership",
                         "careers": "Careers",
@@ -422,6 +423,13 @@
                                 "operator": "==",
                                 "value": "testimonial-no-image"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_5c083faf137b9",
+                                "operator": "==",
+                                "value": "testimonial-insight"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -456,6 +464,13 @@
                                 "operator": "==",
                                 "value": "testimonial-no-image"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_5c083faf137b9",
+                                "operator": "==",
+                                "value": "testimonial-insight"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -489,6 +504,13 @@
                                 "field": "field_5c083faf137b9",
                                 "operator": "==",
                                 "value": "testimonial-no-image"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_5c083faf137b9",
+                                "operator": "==",
+                                "value": "testimonial-insight"
                             }
                         ]
                     ],
@@ -803,15 +825,7 @@
                     "type": "taxonomy",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5c083faf137b9",
-                                "operator": "==",
-                                "value": "post-feed"
-                            }
-                        ]
-                    ],
+                    "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -827,11 +841,12 @@
                     "multiple": 0
                 },
                 {
-                    "key": "field_62422e313f55b",
-                    "label": "Publications",
-                    "name": "publications",
-                    "type": "select",
-                    "instructions": "All Insights will display all insights posts.",
+                    "key": "field_6408f41f7df7b",
+                    "label": "Insight Group",
+                    "name": "insight_group",
+                    "aria-label": "",
+                    "type": "taxonomy",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": [
                         {
@@ -845,28 +860,14 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "solution_types": "Solution Types",
-                        "advisory_services": "Advisory Services",
-                        "conversion_and_archival": "Conversion and Archival",
-                        "data_analytics_and_management": "Data Analytics and Management",
-                        "interfaces_and_interoperability": "Interfaces and Interoperability",
-                        "patient_engagement": "Patient Engagement",
-                        "population_health": "Population Health",
-                        "system_and_business_automation": "System and Business Automation",
-                        "workflow_efficiency": "Workflow Efficiency",
-                        "chart2pdf": "Chart2PDF",
-                        "ehr_barcode_reader": "EHR Barcode Reader",
-                        "intelefiler": "InteleFiler",
-                        "live_archive": "LiveArchive"
-                    },
-                    "default_value": false,
+                    "taxonomy": "post_tag",
+                    "add_term": 1,
+                    "save_terms": 0,
+                    "load_terms": 0,
+                    "return_format": "id",
+                    "field_type": "select",
                     "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 1,
-                    "ajax": 0,
-                    "return_format": "value",
-                    "placeholder": ""
+                    "multiple": 0
                 },
                 {
                     "key": "field_63bdd5a703217",
@@ -929,41 +930,6 @@
                     "layout": "vertical",
                     "return_format": "value",
                     "save_other_choice": 0
-                },
-                {
-                    "key": "field_63da91797556e",
-                    "label": "Exclude",
-                    "name": "exclude",
-                    "aria-label": "",
-                    "type": "checkbox",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5c083faf137b9",
-                                "operator": "==",
-                                "value": "pubs"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "brochure": "Brochure",
-                        "case_study": "Case Study",
-                        "white_paper": "White Paper",
-                        "sales_sheet": "Sales Sheet"
-                    },
-                    "default_value": [],
-                    "return_format": "value",
-                    "allow_custom": 0,
-                    "layout": "vertical",
-                    "toggle": 0,
-                    "save_custom": 0
                 },
                 {
                     "key": "field_5c12d7b420c68",
@@ -1576,6 +1542,13 @@
                 "param": "post_template",
                 "operator": "==",
                 "value": "template-blocks.php"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "insights"
             }
         ]
     ],

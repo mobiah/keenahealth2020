@@ -3,7 +3,7 @@
 Plugin Name: WP All Export
 Plugin URI: http://www.wpallimport.com/upgrade-to-wp-all-export-pro/?utm_source=export-plugin-free&utm_medium=wp-plugins-page&utm_campaign=upgrade-to-pro
 Description: Export any post type to a CSV or XML file. Edit the exported data, and then re-import it later using WP All Import.
-Version: 1.3.8
+Version: 1.3.9
 Author: Soflyy
 */
 
@@ -59,7 +59,7 @@ else {
 	 */
 	define('PMXE_PREFIX', 'pmxe_');
 
-	define('PMXE_VERSION', '1.3.8');
+	define('PMXE_VERSION', '1.3.9');
 
     define('PMXE_ASSETS_VERSION', '-1.0.2');
 
@@ -217,6 +217,8 @@ else {
                 add_action($actionName, self::PREFIX . str_replace('-', '_', $function), $priority, 99); // since we don't know at this point how many parameters each plugin expects, we make sure they will be provided with all of them (it's unlikely any developer will specify more than 99 parameters in a function)
             }
 
+            add_action("admin_enqueue_scripts", [$this, 'add_admin_scripts']);
+
             // register filter handlers
             if (is_dir(self::ROOT_DIR . '/filters')) foreach (PMXE_Helper::safe_glob(self::ROOT_DIR . '/filters/*.php', PMXE_Helper::GLOB_RECURSE | PMXE_Helper::GLOB_PATH) as $filePath) {
                 require_once $filePath;
@@ -240,6 +242,17 @@ else {
             add_action('admin_init', array($this, 'adminInit'), 11);
             add_action('admin_init', array($this, 'fix_db_schema'), 10);
             add_action('init', array($this, 'init'), 10);
+        }
+
+        public function add_admin_scripts() {
+            $cm_settings['codeEditor'] = wp_enqueue_code_editor(['type' => 'php']);
+
+            // Use our modified function if user has disabled the syntax editor.
+            if(false === $cm_settings['codeEditor']){
+                $cm_settings['codeEditor'] = wpae_wp_enqueue_code_editor(['type' => 'php']);
+            }
+
+            wp_localize_script('jquery', 'wpae_cm_settings', $cm_settings);
         }
 
         /**
@@ -811,7 +824,7 @@ else {
 			$parent_id = false;
 			$export_post_type = false;
             $created_at = false;
-			
+
             // Check if field exists
 			foreach ($tablefields as $tablefield) {
 				if ('iteration' == $tablefield->Field) $iteration = true;
